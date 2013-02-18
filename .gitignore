@@ -1,0 +1,15 @@
+/node_modules
+/build
+.sass-cache
+assets
+
+#proper build systems will fetch these dependencies
+plugins
+vendor
+
+# vim gitignore
+.*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~

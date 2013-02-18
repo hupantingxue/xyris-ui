@@ -1,0 +1,50 @@
+/* Entypo */
+@font-face {
+  font-family: 'Entypo';
+  src: url('font/entypo.eot');
+  src: url('font/entypo.eot') format('embedded-opentype'),
+    url('font/entypo.woff') format('woff'),
+    url('font/entypo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class*="entypo-"],
+[class*=" entypo-"] {
+  font-family: Entypo;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+
+  /* sprites.less reset */
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: normal;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  margin-top: 0;
+}
+
+[class^="entypo-"]:before,
+[class*=" entypo-"]:before {
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+}
+/* makes sure icons active on rollover in links */
+a [class^="entypo-"],
+a [class*=" entypo-"] {
+  display: inline-block;
+}
+
+.entypo-large:before {
+  vertical-align: -10%;
+  font-size: 1.3333333333333333em;
+}
+
+
+

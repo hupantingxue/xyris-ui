@@ -1,0 +1,280 @@
+@import "foundation.scss"
+@import "entypo.scss"
+
+/* color scheme from http://www.colourlovers.com/palette/148712/Gamebookers */
+$cs-orange: #FF9900
+$cs-dark-grey: #424242
+$cs-light-grey: #E9E9E9
+$cs-med-grey: #BCBCBC
+$cs-blue: #3299BB
+
+/* Mixins */
+@mixin highlight-text($color: $cs-dark-grey) 
+  &:hover
+    color: $color
+    font-weight: bold
+  
+.main 
+  margin-top: 75px
+
+.header
+  background: #ffffff url('assets/top-bar-bg.png') repeat-x 0 -128px
+  .name 
+    float: right
+    margin-right: 30px
+    a
+      @include highlight-text($cs-orange)
+
+.footer
+  bottom: 0
+  top: auto
+  border-top: 1px solid $cs-med-grey
+  li 
+    line-height: 16px
+
+  .inline-list
+    margin-top: 8px
+    margin-bottom: 8px
+    a
+      color: $cs-med-grey
+      &:hover
+        font-weight: bold
+        color: $cs-dark-grey
+
+/* additional rows */
+.one.plus-half 
+  width: 12.5%
+
+.eight.minus-half
+  width: 62.5%
+
+.off-page
+  display: none
+
+/* Animation will be replaced by javascript support */
+.animated-item-view
+  opacity: 0
+  -ms-filter: alpha(Opacity=0)
+  filter: alpha(opacity=0)
+  -webkit-transition: opacity 2s linear
+  -moz-transition: opacity .5s linear
+  -o-transition: opacity .5s linear
+  -ms-transition: opacity .5s linear
+  transition: opacity 2s linear
+
+.animated-item-view-end
+  opacity: 1
+  -ms-filter: none
+  filter: none
+
+.top-bar
+  background: none
+
+@mixin doctype-list($pos: right)
+  .doctype-list 
+    padding:
+      #{$pos}: 20px
+    .tabs.vertical 
+      border: none
+      dd
+        border: none
+        &.web
+          a
+            @include highlight-text
+        &.news
+          a
+            @include highlight-text  
+        &.books
+          a
+            @include highlight-text
+        a
+          background: none
+          border: none
+          border-#{$pos}: 3px solid $cs-med-grey
+          text-align: $pos
+          padding: 10px 20px
+          color: $cs-med-grey
+          width: 90px
+          &.active
+            margin:
+              #{pos}: 5px
+            color: $cs-dark-grey
+            font-weight: bold
+            border-#{$pos}: 5px solid $cs-orange
+
+.left-sidebar
+  @include doctype-list
+  .doctype-list
+    position: fixed
+    top: 80px
+
+.search-icon
+  background: transparent none no-repeat 0 0
+  background-image: url('assets/location.svg')
+  background-size: 44px
+  height: 44px
+  width: 44px
+  float: right
+
+.search-icon.entypo-icon
+  background: none
+  font-size: 115px 
+  margin-top: -32px
+  margin-right: 8px
+
+.search-options
+  @include doctype-list(left)
+   
+.search-context
+  position: absolute
+  top: 0px
+  left: 0px
+  right: 0px
+  z-index: 98
+  background-color: transparent
+  .container
+    margin-top: 100px
+
+.search-context-query
+  min-height: 250px
+
+textarea.search-query
+  font-size: 44px
+  line-height: 44px
+  outline: 0
+  white-space: pre-wrap
+  word-wrap: break-word
+  box-shadow: none
+  padding: 0px
+  margin: 0 0 0 -2px
+  border: 1px solid transparent
+  resize: none
+  background-color: transparent
+  overflow: hidden
+  &:hover
+    border-color: transparent
+    background-color: transparent
+
+.xyris-icon
+  width: 17.666667%
+
+.sc-summary
+  margin-left: -52px
+  &.columns
+    width: 58.33333%
+
+.sc-summary-icon
+  background: transparent none no-repeat 0 0
+  background-size: 22px
+  height: 22px
+  width: 22px
+  float: right
+  margin-top: 11px
+  margin-bottom: 13px
+  &.search
+    background-image: url('assets/location-white.png')
+  &.entypo-icon
+    font-size: 51px
+    color: white
+    margin-top: -2px
+
+.sc-summary-query
+  color: white
+  margin-top: 7px
+  margin-bottom: 11px
+
+.app-icon-img 
+  background: transparent none no-repeat 0 0
+  height: 25px
+  width: 25px
+  display: block
+  position: absolute
+  top: 8px
+  left: 9px
+  background-size: 25px
+  background-image: url('assets/app-icon.jpg')
+
+#main-content
+  .search-result-entry
+    &.hover
+      .search-result-score
+        i
+          color: $cs-dark-grey
+        span
+          color: white
+    .search-result-score
+      cursor: pointer
+      i
+        font-size: 44px
+        color: $cs-light-grey
+      span
+        z-index: 4
+        position: absolute
+        top: 16px
+        left: 20px
+        color: $cs-dark-grey
+    .search-result-desc
+      cursor: pointer
+    .options
+      li.result-bookmark
+        margin-left: 20px
+      i 
+        color: $cs-light-grey
+        margin-bottom: 14px
+        cursor: pointer
+        font-size: 16px
+    &.hover
+      .options
+        i
+          color: $cs-dark-grey
+    font-size: 14px
+    margin-bottom: 36px
+    h5
+      color: $cs-dark-grey
+      margin: 0
+      font-weight: 500
+    h6
+      margin-top: 0px
+      margin-bottom: 0.618em
+    .snippet-container
+      height: 50px
+    .orbit-wrapper
+      .slider-nav
+        display: none !important
+        i
+          top: auto
+          bottom: 0
+          width: 19px
+          height: 25px
+          position: absolute
+          z-index: 30
+          margin-top: -25px
+          cursor: pointer
+          color: $cs-med-grey
+          font-size: 22px
+          &.right
+            right: 0
+          &.left
+            right: 22px
+            left: auto
+      .orbit-slide
+        h6
+          color: $cs-dark-grey
+    &.hover
+      .orbit-wrapper
+        .slider-nav
+          display: block !important
+
+#keyword-result-container
+  position: fixed
+
+.keywords
+  list-style: none
+  margin-top: 10px
+  .keyword-entry
+    h6
+      margin: 0px
+    a:hover
+      h6
+        color: black
+        background-color: $cs-light-grey
