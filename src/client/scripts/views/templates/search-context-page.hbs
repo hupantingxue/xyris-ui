@@ -1,22 +1,23 @@
-<div class='one plus-half columns'>
-  <!-- <div class='search-icon'></div> -->
-  <div class='search-icon entypo-icon'>&#128319;</div>
+<div class='one columns search-icon entypo-icon'>
+  &#128319;
 </div>
-<div class='eight minus-half columns'>
-  <div class='row'>
-    <div id='search-context-query' class='twelve columns search-context-query'></div>
-  </div>
-  <div class='row hide' id='search-suggestions' >
-    <div class='six columns'>
-      <h5><small>Suggested queries</small></h5>
-      <div id='search-query-suggest'></div>
+<div class='eight columns'>
+  <div id='search-context-query' class='search-context-query'>
+    <div id='search-hint' class='search-hint'>
+      <span id='search-hint-stat'>&nbsp;Start typing here to explore&nbsp;
+      </span>
     </div>
-    <div class='six columns'>
-      <h5><small>Suggestions from past searches</small></h5>
-      <div id='search-ctxt-suggest'></div>
+    <div id='search-typeahead' class='search-typeahead'>
     </div>
   </div>
+  <ul class='inline-list search-options'>
+    <li class='web active'><a href='#'>web</a></li>
+    <li class='docs'><a href='#'>documents</a></li>
+    <li class='rsrchart'><a href='#'>research articles</a></li>
+  </ul>
 </div>
 <div class='three columns'>
-  <div id='search-options' class='search-options'></div>
+  <div id='search-context-suggest' class='search-context-suggest'>
+    <div id='search-query-suggest'></div>
+  </div>
 </div>

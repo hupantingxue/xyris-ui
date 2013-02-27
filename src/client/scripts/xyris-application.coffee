@@ -6,13 +6,13 @@ define [
   'controllers/search-context-controller'
 ], (Chaplin, Layout,  routes, BaseLayoutController, SearchContextController) ->
   'use strict'
-  
-  class CaseManagementApplication extends Chaplin.Application
+
+  class XyrisApplication extends Chaplin.Application
     title: 'Case Management Dashboard'
-   
+
     initialize: ->
       super
-     
+
       # Initialize core components
       @initDispatcher controllerSuffix: '-controller'
       @initLayout()
@@ -28,10 +28,10 @@ define [
       # the root per default. You might change that in the options
       # if necessary:
       # @initRouter routes, pushState: false, root: '/subdir/'
- 
+      #
       # Freeze the application instance to prevent further changes
       Object.freeze? this
-    
+
     # Override standard layout initializer
     # ------------------------------------
     initLayout: ->
@@ -39,7 +39,6 @@ define [
       # no features to the standard Chaplin Layout, it’s an empty placeholder.
       @layout = new Layout {@title}
 
-     
     # Instantiate common controllers
     # ------------------------------
     initControllers: ->
@@ -50,7 +49,7 @@ define [
       # or navigation views.
       new BaseLayoutController
       new SearchContextController
-    
+
     # Create additional mediator properties
     # -------------------------------------
     initMediator: ->

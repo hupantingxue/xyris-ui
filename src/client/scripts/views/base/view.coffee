@@ -6,9 +6,7 @@ define [
   'use strict'
 
   class View extends Chaplin.View
-   
     containerMethod: 'append'
-  
     initialize: ->
       super
 

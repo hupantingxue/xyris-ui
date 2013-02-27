@@ -8,5 +8,4 @@ define [
     template: template
     tagName: 'li'
     className: 'search-result-entry'
-    autoRender: true  
-
+    autoRender: true

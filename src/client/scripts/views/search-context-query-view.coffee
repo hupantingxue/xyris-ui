@@ -1,40 +1,74 @@
 define [
   'jquery'
+  'config'
   'views/base/view'
+  'models/base/model'
+  'chaplin/lib/delayer'
   'plugins/jquery.autosize'
-], ($, View) ->
+], ($,
+    config,
+    View,
+    Model,
+    Delayer) ->
+
   'use strict'
 
   class SearchContextQueryView extends View
     autoRender: no
-    containerMethod: 'html'
+    containerMethod: 'prepend'
     tagName: 'textarea'
     className: 'search-query'
     id: 'search-query'
+
+    _(@prototype).extend Delayer
 
     attributes: ->
       spellcheck: 'false'
       autocomplete: 'off'
       maxlength: 150
       autofocus: 'autofocus'
-      placeholder: 'Type to discover...'
+      placeholder: ''
 
     initialize: ->
       super
+      @typeahead_model = new Model
+      @listenTo @typeahead_model, 'change', @showTypeaheadSuggestion
 
     highlightTextBox: ->
       @$el.effect('highlight', {easing: 'easeOutCubic'})
 
+    initiateTypeaheadSuggestion: () =>
+      if @query != ""
+        query = encodeURIComponent(@query)
+        @typeahead_model.url = config.api.versionRoot + "/typeahead/suggest?query=#{query}"
+        @typeahead_model.fetch()
+
+    showTypeaheadSuggestion: (query) ->
+        console.log(@typeahead_model.get('suggestion'))
+        $('#search-typeahead').show()
+        original_query = @query
+        match_str = escape(original_query).replace(/%20/g, " ")
+        console.log(match_str)
+        q_regex = new RegExp("(#{match_str})", "g")
+        new_query = @typeahead_model.get('suggestion')
+        matches = new_query.match(q_regex)
+        console.log(matches)
+        if matches? && matches.length != 0
+          new_query = new_query.replace(q_regex, "<span>$1</span>")
+          new_query = new_query.replace(/\s/g, "&nbsp;")
+          console.log(new_query)
+          $('#search-typeahead').html(new_query)
+
     afterRender: ->
       super
-      @$el.css({height: '55px'})
-      @$el.autosize(className: 'search-query', append: '\n')
-      @highlightTextBox()
+      @$el.css({height: '49px'})
+      @$el.autosize(className: 'search-query', append: '')
       ## Come up with a better way of handling it
       @delegate 'keydown', @takeActions
       @delegate 'keyup', @queryEntered
- 
+
     takeActions: (event) ->
+      $('#search-typeahead').hide()
       keyCode = $.ui.keyCode
       switch event.keyCode
         when keyCode.ENTER, keyCode.NUMPAD_ENTER
@@ -48,7 +82,7 @@ define [
           event.preventDefault()
         when keyCode.DOWN, keyCode.PAGE_DOWN
           event.preventDefault()
-          
+
     queryEntered: (event) ->
       @query = @$el.val()
       keyCode = $.ui.keyCode
@@ -60,7 +94,6 @@ define [
         when keyCode.TAB
           event.preventDefault() 
         else
+          @setTimeout("typeahead", 400, @initiateTypeaheadSuggestion)
           @publishEvent 'searchctxt:queryEntered',
             query: @query
-      
-   

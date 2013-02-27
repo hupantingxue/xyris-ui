@@ -10,13 +10,12 @@ define [
 
     apiRoot: config.api.versionRoot
     urlKey: 'id'
-  
     urlPath: ->
       ''
-  
+
     urlParams: ->
       access_token: mediator.user?.get('accessToken')
-  
+
     urlRoot: ->
       urlPath = @urlPath()
       if urlPath
@@ -25,7 +24,7 @@ define [
         @collection.url()
       else
         throw new Error('Model must redefine urlPath')
-  
+
     url: (data = '') ->
       base = @urlRoot()
       full = if @get(@urlKey)?
@@ -47,7 +46,7 @@ define [
       else
         full
       url
-  
+
     fetch: (options = {}) ->
       @beginSync()
       previous = options.success

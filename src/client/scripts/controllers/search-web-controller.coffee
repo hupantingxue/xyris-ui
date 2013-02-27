@@ -10,7 +10,18 @@ define [
   'models/keyword/keyword'
   'views/keyword/keywords-page-view'
   'views/keyword/keyword-entry-view'
-], ($, config, Controller, SearchResults, WebResultEntry, SearchResultPageView, WebResultEntryView, Keywords, Keyword, KeywordsPageView, KeywordEntryView) ->
+], ($,
+    config,
+    Controller,
+    SearchResults,
+    WebResultEntry,
+    SearchResultPageView,
+    WebResultEntryView,
+    Keywords,
+    Keyword,
+    KeywordsPageView,
+    KeywordEntryView) ->
+
   'use strict'
 
   class SearchWebController extends Controller

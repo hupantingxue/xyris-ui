@@ -141,17 +141,55 @@ exports.getWeb = (req, res) ->
 
 
   ])
-      
+
 exports.getHome = (req, res) ->
   res.render 'index', {}
 
 exports.getKeyword = (req, res) ->
-  res.send([{name: 'Physics', searchContextId: '1232123', stageId: '123S3', searchcat: req.query.searchcat}, 
-            {name: 'Theory', searchContextId: '1232123', stageId: '123S3', searchcat: req.query.searchcat},
-            {name: 'Relativity', searchContextId: '1232123', stageId: '123S3', searchcat: req.query.searchcat},
-            {name: 'Two body problem', searchContextId: '1232123', stageId: '123S3', searchcat: req.query.searchcat},
-            {name: 'General Theory of Relativity', searchContextId: '1232123', stageId: '123S3', searchcat: req.query.searchcat},
-            {name: 'Minkowski matrix', searchContextId: '1232123', stageId: '123S3', searchcat: req.query.searchcat}
+  res.send([{
+              name: 'Physics'
+              keyid: '12334SD45'
+            },
+            {
+              name: 'Theory'
+              keyid: '3J45JJRJ'
+            },
+            {
+              name: 'Relativity'
+              keyid: '23JJK45'
+            },
+            {
+              name: 'Two body problem'
+              keyid: '345345'
+            },
+            {
+              name: 'General Theory of Relativity'
+              keyid: '346657'
+            },
+            {
+              name: 'Minkowski matrix'
+              keyid: '345345'
+            },
+            {
+              name: "Dark Matter"
+              keyid: '34534234'
+            },
+            {
+              name: "Cosmology"
+              keyid: '123689'
+            },
+            {
+              name: "Germany"
+              keyid: '245876'
+            },
+            {
+              name: "Scientist"
+              keyid: '2348456'
+            },
+            {
+              name: "Nobel Prize"
+              keyid: '23468'
+            }
   ])
 
 exports.getContextId = (req, res) ->
@@ -164,4 +202,11 @@ exports.initSearchContext = (req, res) ->
   res.send({
     searchContextId: '1330990ASD89ASD'
     stageId: '243SDF33'
+  })
+
+exports.getTypeaheadSuggestion = (req, res) ->
+  query = req.query.query
+  query += "asdf"
+  res.send({
+    suggestion:  query
   })

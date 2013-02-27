@@ -8,7 +8,8 @@ define [
 
   class SearchContextController extends Controller
     initialize: ->
-      @show()
+      @subscribeEvent 'searchctxt:show_search', (attributes) =>
+        @show()
 
     show: ->
       @url = config.api.versionRoot
@@ -17,4 +18,4 @@ define [
       @model.url = @url + "/searchctxt/init"
 
       @view = new SearchContextPageView {model: @model}
-      @model.fetch()   
+      @model.fetch()

@@ -1,6 +1,6 @@
 define ->
   'use strict'
-  
+
   # The routes for the application. This module returns a function.
   # `match` is match method of the Router
   (match) ->
@@ -11,3 +11,4 @@ define ->
     match 'search/web/:searchContextId/:stageId/:query/:filterKeyword', 'search-web#show', name: 'filter_web'
 
     match 'search/news/:query', 'search-news#show', name: 'search_news'
+    match '', 'publish-event#show_search', name: 'show_search'

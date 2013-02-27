@@ -1,6 +1,6 @@
 module.exports = (app) ->
   controllers = require './controllers/controllers'
-  
+
   # Home page
   app.get '/v1/search/books', controllers.getBooks
   app.get '/v1/search/web', controllers.getWeb
@@ -10,4 +10,6 @@ module.exports = (app) ->
 
   # Search SearchContext Related apis
   app.get '/v1/searchctxt/init', controllers.initSearchContext
+  app.get '/v1/searchctxt/get/keyword', controllers.getKeyword
   app.get '/v1/suggest/query/:query', controllers.getSuggestedQueries
+  app.get '/v1/typeahead/suggest', controllers.getTypeaheadSuggestion

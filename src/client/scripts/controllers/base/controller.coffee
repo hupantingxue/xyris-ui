@@ -3,4 +3,4 @@ define ['chaplin'], (Chaplin) ->
 
   class Controller extends Chaplin.Controller
 
-    title: 'Case Management'
+    title: 'Xyris'

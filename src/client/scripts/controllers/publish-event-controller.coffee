@@ -4,6 +4,6 @@ define [
   'use strict'
 
   class PublishEventController extends Controller
-    show_search_context: ->
-      @publishEvent 'searchctxt:show', {}
-  
+
+    show_search: ->
+      @publishEvent 'searchctxt:show_search', {}

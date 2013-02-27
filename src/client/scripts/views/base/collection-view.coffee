@@ -6,4 +6,3 @@ define [
 
   class CollectionView extends Chaplin.CollectionView
     getTemplateFunction: View::getTemplateFunction
-     
