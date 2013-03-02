@@ -1,0 +1,16 @@
+{
+  "name": "xyris-ui",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery":     "http://code.jquery.com/jquery-1.8.3.min.js",
+    "handlebars": "https://raw.github.com/wycats/handlebars.js/1.0.0-rc.3/dist/handlebars.js",
+    "backbone":   "http://backbonejs.org/backbone-min.js",
+    "text":       "https://raw.github.com/requirejs/text/2.0.3/text.js",
+    "underscore": "http://underscorejs.org/underscore-min.js",
+    "requirejs":  "http://requirejs.org/docs/release/2.1.4/minified/require.js",
+    "modernizr":  "http://modernizr.com/downloads/modernizr-2.6.2.js",
+    "jqueryui":   "http://code.jquery.com/ui/1.9.2/jquery-ui.js"
+  },
+  "exportsOverride": {
+  }
+}

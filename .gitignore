@@ -1,11 +1,9 @@
 /node_modules
 /build
+/vendor
+
 .sass-cache
 assets
-
-#proper build systems will fetch these dependencies
-plugins
-vendor
 
 # vim gitignore
 .*.s[a-w][a-z]
@@ -13,3 +11,16 @@ vendor
 Session.vim
 .netrwhist
 *~
+
+# MAC OSX extension
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes

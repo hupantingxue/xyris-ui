@@ -1,16 +1,40 @@
 {
-  "name" : "case-management-ui-v2",
-  "description" : "Case Management UI v2 proposal",
-  "version" : "0.0.1",
-  "private" : true,
-  "dependencies" : {
-    "express" : "3.0.4",
-    "jade" : "0.27.7",
-    "coffee-script" : "1.4.0"
+  "name": "xyris-ui",
+  "description": "Xyris app's ui",
+  "version": "0.2.0",
+  "author": "Kumar Ishan",
+  "private": true,
+  "dependencies": {
+    "express": "3.0.4",
+    "jade": "0.27.7",
+    "coffee-script": "1.4.0"
   },
-  "devDependencies" : {
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-uglify": "~0.1.2",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-coffee": "~0.4.1",
+    "grunt-contrib-sass": "~0.2.2",
+    "grunt-contrib-copy": "~0.4.0",
+    "matchdep": "~0.1.1",
+    "grunt-bower-task": "~0.1.0",
+    "grunt-bower-hooks": "~0.2.0",
+    "grunt-express-server": "~0.1.0",
+    "grunt-contrib-livereload": "~0.1.2",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-imagemin": "~0.1.2"
   },
-  "scripts" : {
-    "start" : "node app"
+  "scripts": {
+    "start": "grunt server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kumarishan/xyris-ui.git"
+  },
+  "analyze": false,
+  "engines": {
+    "node": ">=0.8.0"
   }
 }

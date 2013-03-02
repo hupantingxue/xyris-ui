@@ -10,6 +10,7 @@ Techs used
 ----------
 ### JavaScript
 * JQuery
+* jQuery UI
 * Underscore (replace with lodash)
 * Backbone.js
 * Chaplin.js
@@ -25,24 +26,30 @@ Techs used
 
 ### Build
 * grunt
-* cakefile
-(make fully grunt compatible)
+* bower
 
+Authors
+-------
+Kumar Ishan - [@kumarishan](https://github.com/kumarishan)
 
-Start page
-----------
+Change Log
+-----------
 
-### Accomplished
-Basic functionality of the first page, better ui design
+### 0.2.0
+Completely migrating to Grunt for build tool and bower for dependency management
+Now code can be checked out and run directly given using grunt server and compiled
+using grunt default
+Grunt tasks active as of now includes
+* coffeescript compilation
+* sass and css compilation
+* get dependency using bower
+* bower require js hooks
+* run express server
 
-### Did
-* The query textbox design changed
-* Search option design changed
-* Added more colors on the first page to attract attention and encourage actions
-* Search context detection added
-* Adopted better typography Lato and Source Sans Pro
-
-### Todo
+To do for subsequent releases (Apart from other milestones)
+* proper grunt tasks to validate, compile, test, package, verify, install, deploy
+* add vagrant + chef support
+Carry forwarded todos from previous releases
 * CSS refactoring to adopt mixed approach of OOCSS and SMACSS
 * JS Structured coding
 * Cross browser testing
@@ -52,3 +59,20 @@ Basic functionality of the first page, better ui design
 * Fix transition from other page to search context page.
 * Search context summary view -- a better approach
 
+### 0.1.0
+Basic functionality of the first page, better ui design
+* The query textbox design changed
+* Search option design changed
+* Added more colors on the first page to attract attention and encourage actions
+* Search context detection added
+* Adopted better typography Lato and Source Sans Pro
+
+To do for subsequent releases
+* CSS refactoring to adopt mixed approach of OOCSS and SMACSS
+* JS Structured coding
+* Cross browser testing
+* JS optimization using Closure compiler
+* Lint everything
+* Add phantomJS testing
+* Fix transition from other page to search context page.
+* Search context summary view -- a better approach

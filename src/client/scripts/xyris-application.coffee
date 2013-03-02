@@ -8,7 +8,7 @@ define [
   'use strict'
 
   class XyrisApplication extends Chaplin.Application
-    title: 'Case Management Dashboard'
+    title: 'Xyris'
 
     initialize: ->
       super

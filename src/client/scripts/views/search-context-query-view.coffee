@@ -4,7 +4,7 @@ define [
   'views/base/view'
   'models/base/model'
   'chaplin/lib/delayer'
-  'plugins/jquery.autosize'
+  'autosize'
 ], ($,
     config,
     View,
