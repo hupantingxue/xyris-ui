@@ -13,7 +13,7 @@ define [
     initialize: ->
       super
 
-    afterRender: ->
+    attach: ->
       super
       ###
       Removed the background highlighting of context keywords

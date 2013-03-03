@@ -8,11 +8,11 @@ define [
     autoRender: yes
     template: template
     containerMethod: 'html'
-   
+
     initialize: ->
       super
 
-    afterRender: ->
+    attach: ->
       super
       @subscribeEvent 'searchctxt:queryEntered', (attributes) =>
         query = encodeURIComponent(attributes.query)

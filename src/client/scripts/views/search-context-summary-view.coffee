@@ -10,15 +10,14 @@ define [
     containerMethod: 'html'
     tagName: 'nav'
     className: 'top-bar'
-  
+
     initialize: ->
       super
 
     render: ->
       super
 
-    afterRender: ->
+    attach: ->
       super
       @delegate 'click', '.sc-summary-icon', (event) =>
         @publishEvent 'searchctxt:show', {}
-    

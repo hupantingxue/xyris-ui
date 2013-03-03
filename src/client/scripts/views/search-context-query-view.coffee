@@ -59,7 +59,7 @@ define [
           console.log(new_query)
           $('#search-typeahead').html(new_query)
 
-    afterRender: ->
+    attach: ->
       super
       @$el.css({height: '49px'})
       @$el.autosize(className: 'search-query', append: '')

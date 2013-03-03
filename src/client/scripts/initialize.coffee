@@ -15,7 +15,7 @@ require.config(
     Libraries
     ###
     orbit: "vendor/jquery.foundation.orbit"
-    chaplin: "vendor/chaplin-0.6.0"
+    chaplin: "vendor/chaplin-0.7.0"
     autosize: "vendor/jquery.autosize-1.15.2"
 
   shim:

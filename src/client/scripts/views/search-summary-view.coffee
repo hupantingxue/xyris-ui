@@ -15,4 +15,3 @@ define [
       @subscribeEvent 'searchSummary:show', (attributes) =>
         @model.clear(silent: yes)
         @model.set attributes
-      

@@ -9,9 +9,10 @@ define [
     template: template
     tagName: 'div'
     className: 'search-result-entry row'
-    autoRender: true  
+    autoRender: true
 
-    afterRender: ->
+    attach: ->
+      super
       @$('.snippet').orbit(
         fluid: '16x6'
         timer: 'false'
@@ -20,11 +21,9 @@ define [
         directionalNavRightText: ''
         directionalNavLeftText: ''
       ).trigger('orbit.stop')
- 
+
       @$el.hover((event)=>
         @$el.addClass('hover')
       (event) =>
         @$el.removeClass('hover')
       )
-      
-      
