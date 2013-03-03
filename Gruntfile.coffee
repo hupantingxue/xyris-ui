@@ -15,15 +15,30 @@ module.exports = (grunt) ->
           dest: 'build/'
           ext: '.js'
         ]
-    sass:
-      compile:
+    uglify:
+      dev:
         files: [
           expand: true
-          cwd: 'src/'
-          src: ['**/*.sass']
-          dest: 'build/'
-          ext: '.css'
+          cwd: 'build/client'
+          src: ['*.js']
+          dest: 'build/client'
         ]
+      prod:
+        files: [
+          expand: true
+          cwd: 'build/client'
+          src: ['**/*.js']
+          dest: 'build/client'
+        ]
+    compass:
+      compile:
+        options:
+          sassDir: 'src/client/styles'
+          cssDir: 'build/client/styles'
+          fontsDir: 'src/cleint/styles/font'
+          specify: ['src/client/styles/**/*.scss', 'src/client/styles/**/*.sass']
+      options:
+        outputStyle: 'compressed'
     copy:
       client_statics:
         files: [
@@ -106,7 +121,9 @@ module.exports = (grunt) ->
       grunt.renameTask('bower', 'bower_install')
   )
 
-  grunt.registerTask('default', ['clean:pre', 'coffee', 'sass', 'copy', 'bower_install', 'bower_require', 'copy:libs', 'imagemin', 'clean:post'])
+  stage = grunt.option('target') || 'dev'
+
+  grunt.registerTask('default', ['clean:pre', 'coffee', 'compass', 'copy', 'bower_install', 'bower_require', 'copy:libs', 'imagemin', 'uglify:' + stage, 'clean:post'])
 
   grunt.registerTask('server', ['default', 'express-server', 'livereload', 'watch'])
 
