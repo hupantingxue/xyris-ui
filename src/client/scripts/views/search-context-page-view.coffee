@@ -55,9 +55,20 @@ define [
           @$("#search-context-suggest").show()
 
         query = encodeURIComponent(attributes.query)
-        @$('.web a').attr('href', '/search/web/' + @model.attributes.searchContextId + '/' + @model.attributes.stageId + '/' + query)
-        @$('.rsrchart a').attr('href', '/search/rsrchart/' + @model.attributes.searchContextId + '/' + @model.attributes.stageId + '/' + query)
-        @$('.docs a').attr('href', '/search/docs/' + @model.attributes.searchContextId + '/' + @model.attributes.stageId + '/' + query)
+        @$('.web a').attr('href',
+                          '/search/web/' +
+                          @model.attributes.searchContextId + '/' +
+                          @model.attributes.stageId + '/' + query)
+
+        @$('.rsrchart a').attr('href',
+                               '/search/rsrchart/' +
+                               @model.attributes.searchContextId + '/' +
+                               @model.attributes.stageId + '/' + query)
+
+        @$('.docs a').attr('href',
+                           '/search/docs/' +
+                           @model.attributes.searchContextId + '/' +
+                           @model.attributes.stageId + '/' + query)
 
       @subscribeEvent 'searchctxt:querySubmitted', (attributes) =>
         $('#search-context').addClass('off-page').removeClass('on-page')
@@ -66,7 +77,10 @@ define [
           @sc_summary.set 'filterKeyword', attributes.filterKeyword
           filterKeywordLength = attributes.filterKeyword.length
 
-        query = if attributes.query.length >= (48 - filterKeywordLength) then attributes.query.substring(0, 48 - filterKeywordLength) + '...' else attributes.query
+        if attributes.query.length >= (48 - filterKeywordLength)
+          query = attributes.query.substring(0, 48 - filterKeywordLength) + '...'
+        else
+          query = attributes.query
 
         @sc_summary.set('query', query)
         @sc_summary.set('altQuery', attributes.query)

@@ -28,7 +28,7 @@ app.configure 'production', ->
   logFile = fs.createWriteStream('./xyris-ui.log', flags: 'w')
   app.use epxress.logger stream:logFile, 'dev'
 
-require('./routes')(app);
+require('./routes')(app)
 
 server = http.createServer(app)
 server.listen app.get('port'), ->

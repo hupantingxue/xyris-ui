@@ -4,7 +4,7 @@ define [
 ], (Handlebars, View) ->
   'use strict'
 
-  class PageView extends View 
+  class PageView extends View
     renderedSubviews: no
 
     initialize: ->

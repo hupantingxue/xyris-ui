@@ -9,7 +9,7 @@ define [
       succ = options.success
       options.success = (collection, resp, xhr) =>
         @trigger 'change'
-        if succ 
+        if succ
           succ(collection, resp,  xhr)
 
       super(options)

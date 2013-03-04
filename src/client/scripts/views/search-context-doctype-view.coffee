@@ -16,6 +16,20 @@ define [
       super
       @subscribeEvent 'searchctxt:queryEntered', (attributes) =>
         query = encodeURIComponent(attributes.query)
-        @$('.web a').attr('href', '/search/web/' + @model.attributes.searchContextId + '/' + @model.attributes.stageId + '/' + query)
-        @$('.news a').attr('href', '/search/news/' + @model.attributes.searchContextId + '/' + @model.attributes.stageId + '/' + query)
-        @$('.books a').attr('href', '/search/books/' + @model.attributes.searchContextId + '/' + @model.attributes.stageId + '/' + query)
+        @$('.web a').attr('href',
+                          '/search/web/' +
+                          @model.attributes.searchContextId + '/' +
+                          @model.attributes.stageId + '/' +
+                          query)
+
+        @$('.news a').attr('href',
+                           '/search/news/' +
+                           @model.attributes.searchContextId + '/' +
+                           @model.attributes.stageId + '/' +
+                           query)
+
+        @$('.books a').attr('href',
+                            '/search/books/' +
+                            @model.attributes.searchContextId + '/' +
+                            @model.attributes.stageId + '/' +
+                            query)

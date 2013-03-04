@@ -34,6 +34,16 @@ Kumar Ishan - [@kumarishan](https://github.com/kumarishan)
 
 Change Log
 -----------
+### 0.2.1
+* migrated to chaplin 0.7.0
+* added normalize.css
+* migrated from sass to compass
+* enabled compress in express to pass Google pagespeed
+* added grunt-watch and grunt-open
+* requirejs optimization using r.js - optimization using uglify2
+* CoffeeScript linting enabled
+Upcoming
+as mentioned in previous changelog 0.2.0
 
 ### 0.2.0
 Completely migrating to Grunt for build tool and bower for dependency management
@@ -49,6 +59,7 @@ Grunt tasks active as of now includes
 To do for subsequent releases (Apart from other milestones)
 * proper grunt tasks to validate, compile, test, package, verify, install, deploy
 * add vagrant + chef support
+
 Carry forwarded todos from previous releases
 * CSS refactoring to adopt mixed approach of OOCSS and SMACSS
 * JS Structured coding

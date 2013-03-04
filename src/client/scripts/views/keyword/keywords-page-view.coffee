@@ -10,7 +10,7 @@ define [
     template: template
     container: '#right-sidebar'
 
-    initialize: -> 
+    initialize: ->
       super
 
     renderSubviews: ->
@@ -20,7 +20,7 @@ define [
         container: @$('#keyword-result-container')
         itemView: @options.keywordItemView
         query: @options.query
-      @keywords_view.render() 
+      @keywords_view.render()
       @$('#keyword-result-container > input').keyup(() =>
         keyword = @$('#keyword-result-container > input').val()
         @keywords_view.filter((item, index) =>

@@ -88,7 +88,7 @@ define [
         when keyCode.ESCAPE
           @$el.val('')
         when keyCode.TAB
-          event.preventDefault() 
+          event.preventDefault()
         else
           @setTimeout("typeahead", 400, @initiateTypeaheadSuggestion)
           @publishEvent 'searchctxt:queryEntered',

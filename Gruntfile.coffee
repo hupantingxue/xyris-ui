@@ -2,8 +2,9 @@ module.exports = (grunt) ->
   grunt.initConfig(
     pkg: grunt.file.readJSON('package.json')
     clean:
-      pre: ['build/']
+      pre: ['build/', 'dist/']
       post: []
+      afterRjs: ['build/client/']
     coffee:
       options:
         bare: false
@@ -15,21 +16,6 @@ module.exports = (grunt) ->
           dest: 'build/'
           ext: '.js'
         ]
-    uglify:
-      dev:
-        files: [
-          expand: true
-          cwd: 'build/client'
-          src: ['*.js']
-          dest: 'build/client'
-        ]
-      prod:
-        files: [
-          expand: true
-          cwd: 'build/client'
-          src: ['**/*.js']
-          dest: 'build/client'
-        ]
     compass:
       compile:
         options:
@@ -40,6 +26,15 @@ module.exports = (grunt) ->
       options:
         outputStyle: 'compressed'
     copy:
+      afterRjs:
+        files: [
+          {
+            expand: true
+            cwd: 'dist/client'
+            src: ['**/*']
+            dest: 'build/client'
+          }
+        ]
       client_statics:
         files: [
           {
@@ -114,6 +109,42 @@ module.exports = (grunt) ->
     open:
       dev:
         path: 'http://localhost:8888/'
+    requirejs:
+      dist:
+        options:
+          baseUrl: 'scripts'
+          appDir: 'build/client/'
+          mainConfigFile: 'build/client/scripts/initialize.js'
+          dir: 'dist/client'
+          optimize: 'uglify2'
+          modules: [
+            {
+              name: 'initialize'
+              include: [
+                'xyris-application'
+              ]
+            },
+            {
+              name: 'controllers/search-web-controller'
+              exclude:[
+                'xyris-application'
+              ]
+            },
+            {
+              name: 'controllers/publish-event-controller'
+              exclude:[
+                'xyris-application'
+              ]
+            }
+          ]
+    coffeelint:
+      all: 'src/**/*.coffee'
+      grunt: 'Gruntfile.coffee'
+      options:
+        'indentation':
+          'level': 'warn'
+        'max_line_length':
+          'level': 'warn'
   )
 
   require('matchdep').filterDev('grunt-*').forEach((dep) ->
@@ -126,7 +157,21 @@ module.exports = (grunt) ->
 
   stage = grunt.option('target') || 'dev'
 
-  grunt.registerTask('default', ['clean:pre', 'coffee', 'compass', 'copy', 'bower_install', 'bower_require', 'copy:libs', 'imagemin', 'uglify:' + stage, 'clean:post'])
+  grunt.registerTask('default', ['coffeelint'
+                                 'clean:pre',
+                                 'coffee',
+                                 'compass',
+                                 'copy',
+                                 'bower_install',
+                                 'bower_require',
+                                 'copy:libs',
+                                 'imagemin',
+                                 'requirejs',
+                                 'clean:afterRjs',
+                                 'copy:afterRjs',
+                                 'clean:post'])
 
   grunt.registerTask('server', ['default', 'express-server', 'open:dev', 'watch'])
+
+  grunt.registerTask('tempstart', ['express-server', 'open:dev', 'watch'])
 

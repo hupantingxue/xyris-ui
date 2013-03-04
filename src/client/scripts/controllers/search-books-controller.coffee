@@ -10,13 +10,22 @@ define [
   'models/keyword/keyword'
   'views/keyword/keywords-page-view'
   'views/keyword/keyword-entry-view'
-], ($, config, Controller, SearchResults, WebResultEntry, SearchResultPageView, WebResultEntryView, Keywords, Keyword, KeywordsPageView, KeywordEntryView) ->
+], ($,
+    config,
+    Controller,
+    SearchResults,
+    WebResultEntry,
+    SearchResultPageView,
+    WebResultEntryView,
+    Keywords,
+    Keyword,
+    KeywordsPageView,
+    KeywordEntryView) ->
   'use strict'
 
-  class SearchWebController extends Controller
+  class SearchBooksController extends Controller
 
     show: (params) ->
-      
       params.query = $.trim(decodeURIComponent(params.query))
       attributes =
         query: params.query
@@ -32,15 +41,21 @@ define [
       @url = config.api.versionRoot
       query = encodeURIComponent(params.query)
 
-      @collection = new SearchResults null, model: WebResultEntry 
-      @collection.url = @url + "/search/web?q=#{query}&ctxtid=#{params.searchContextId}&stageId=#{params.stageId}"
-      
-      @view = new SearchResultPageView 
+      @collection = new SearchResults null, model: WebResultEntry
+
+      @collection.url =
+          @url +
+          "/search/web?" +
+          "q=#{query}" +
+          "&ctxtid=#{params.searchContextId}" +
+          "&stageId=#{params.stageId}"
+
+      @view = new SearchResultPageView
         collection: @collection
         resultItemView: WebResultEntryView
         className: 'web-result-container row'
         id: 'web-result-container'
-        contextInfo: 
+        contextInfo:
           searchContextId: params.searchContextId
           stageId: params.stageId
           query: params.query
@@ -48,9 +63,15 @@ define [
       @collection.fetch()
 
       @keywords = new Keywords null, model: Keyword
-      @keywords.url = @url + "/get/keyword?searchcat=web&ctxtid=#{params.searchContextId}&stageId=#{params.stageId}"
-      
-      @keywords_page_view = new KeywordsPageView 
+
+      @keywords.url =
+          @url +
+          "/get/keyword?" +
+          "searchcat=web" +
+          "&ctxtid=#{params.searchContextId}" +
+          "&stageId=#{params.stageId}"
+
+      @keywords_page_view = new KeywordsPageView
         collection: @keywords
         keywordItemView: KeywordEntryView
         query: params.query

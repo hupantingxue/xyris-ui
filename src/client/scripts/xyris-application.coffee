@@ -4,7 +4,11 @@ define [
   'routes'
   'controllers/base-layout-controller'
   'controllers/search-context-controller'
-], (Chaplin, Layout,  routes, BaseLayoutController, SearchContextController) ->
+], (Chaplin,
+    Layout,
+    routes,
+    BaseLayoutController,
+    SearchContextController) ->
   'use strict'
 
   class XyrisApplication extends Chaplin.Application

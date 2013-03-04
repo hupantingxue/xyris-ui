@@ -34,7 +34,12 @@ define [
       @render()
 
     updateKeywords: (query, keyid) ->
-      url = @url + "/searchctxt/get/keyword?scid=#{@model.get('searchContextId')}&stgid=#{@model.get('stageId')}"
+      url =
+        @url +
+        "/searchctxt/get/keyword?" +
+        "scid=#{@model.get('searchContextId')}" +
+        "&stgid=#{@model.get('stageId')}"
+
       if query?
         return () =>
           @collection.url = url + "&query=#{query}"
@@ -62,7 +67,9 @@ define [
           @collection.reset()
 
       @subscribeEvent 'ctxtkeyword:clicked', (attributes) =>
-        @setTimeout("updateKeywords", 10, @updateKeywords(null, attributes.keyid))
+        @setTimeout("updateKeywords",
+                    10,
+                    @updateKeywords(null, attributes.keyid))
 
       @$('#ctxt-keyword-result-container > input').keyup(() =>
         keyword = @$('#ctxt-keyword-result-container > input').val()

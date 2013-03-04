@@ -5,5 +5,5 @@ define [
 
   class Keyword extends Model
     urlKey: 'id'
-    urlPath: -> 
+    urlPath: ->
       "/category/"

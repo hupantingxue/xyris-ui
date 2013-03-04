@@ -32,6 +32,13 @@ require.config(
       deps: ["jquery"]
 )
 
-require ['jquery', 'xyris-application', 'jqueryui', 'orbit', 'modernizr'], ($, XyrisApplication) ->
-  app = new XyrisApplication();
+require [
+  'jquery',
+  'xyris-application',
+  'jqueryui',
+  'orbit',
+  'modernizr'
+], ($, XyrisApplication) ->
+
+  app = new XyrisApplication()
   app.initialize()

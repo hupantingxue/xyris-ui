@@ -3,7 +3,7 @@ define [
 ], (Model) ->
   'use strict'
 
-  class SearchContext extends Model 
+  class SearchContext extends Model
     urlKey: 'id'
     urlPath: ->
       '/searchctxt/'

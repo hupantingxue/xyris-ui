@@ -13,4 +13,4 @@ define [
       if @initialVisit
         window._gauges?.track_referer = yes
         @initialVisit = no
-      window._gauges?.push['track'] 
+      window._gauges?.push['track']

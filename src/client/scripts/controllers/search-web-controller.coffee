@@ -46,7 +46,12 @@ define [
       query = encodeURIComponent(params.query)
 
       @collection = new SearchResults null, model: WebResultEntry
-      @collection.url = @url + "/search/web?q=#{query}&ctxtid=#{params.searchContextId}&stageId=#{params.stageId}"
+      @collection.url =
+          @url +
+          "/search/web?" +
+          "q=#{query}" +
+          "&ctxtid=#{params.searchContextId}" +
+          "&stageId=#{params.stageId}"
 
       @view = new SearchResultPageView
         collection: @collection
@@ -61,7 +66,12 @@ define [
       @collection.fetch()
 
       @keywords = new Keywords null, model: Keyword
-      @keywords.url = @url + "/get/keyword?searchcat=web&ctxtid=#{params.searchContextId}&stageId=#{params.stageId}"
+      @keywords.url =
+          @url +
+          "/get/keyword?" +
+          "searchcat=web" +
+          "&ctxtid=#{params.searchContextId}"+
+          "&stageId=#{params.stageId}"
 
       @keywords_page_view = new KeywordsPageView
         collection: @keywords
