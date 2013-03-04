@@ -44,19 +44,15 @@ define [
         @typeahead_model.fetch()
 
     showTypeaheadSuggestion: (query) ->
-        console.log(@typeahead_model.get('suggestion'))
         $('#search-typeahead').show()
         original_query = @query
         match_str = escape(original_query).replace(/%20/g, " ")
-        console.log(match_str)
         q_regex = new RegExp("(#{match_str})", "g")
         new_query = @typeahead_model.get('suggestion')
         matches = new_query.match(q_regex)
-        console.log(matches)
         if matches? && matches.length != 0
           new_query = new_query.replace(q_regex, "<span>$1</span>")
           new_query = new_query.replace(/\s/g, "&nbsp;")
-          console.log(new_query)
           $('#search-typeahead').html(new_query)
 
     attach: ->

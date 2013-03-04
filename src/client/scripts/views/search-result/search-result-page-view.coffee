@@ -14,21 +14,19 @@ define [
     initialize: ->
       super
 
-    renderSubviews: -> 
+    renderSubviews: ->
       super
       @search_results_view = new SearchResultsView
         collection: @collection
         container: @$el
         itemView: @options.resultItemView
       @search_results_view.render()
-      
-      @doctype_model = new Model 
-      console.log(@options.contextInfo.query)
+
+      @doctype_model = new Model
       @doctype_model.set
         searchContextId: @options.contextInfo.searchContextId
         stageId: @options.contextInfo.stageId
         query: encodeURIComponent(@options.contextInfo.query)
-       
+
       @search_result_doctype_view = new SearchResultDoctypeView
         model: @doctype_model
-          

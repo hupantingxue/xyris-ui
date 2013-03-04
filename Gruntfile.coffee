@@ -97,8 +97,8 @@ module.exports = (grunt) ->
       script: 'server.js'
     watch:
       server:
-        files: ['**/*.js']
-        tasks: ['express-server', 'livereload']
+        files: ['src/client/**/*']
+        tasks: ['server']
     imagemin:
       dist:
         options:
@@ -111,6 +111,9 @@ module.exports = (grunt) ->
             dest: 'build/'
           }
         ]
+    open:
+      dev:
+        path: 'http://localhost:8888/'
   )
 
   require('matchdep').filterDev('grunt-*').forEach((dep) ->
@@ -125,5 +128,5 @@ module.exports = (grunt) ->
 
   grunt.registerTask('default', ['clean:pre', 'coffee', 'compass', 'copy', 'bower_install', 'bower_require', 'copy:libs', 'imagemin', 'uglify:' + stage, 'clean:post'])
 
-  grunt.registerTask('server', ['default', 'express-server', 'livereload', 'watch'])
+  grunt.registerTask('server', ['default', 'express-server', 'open:dev', 'watch'])
 
