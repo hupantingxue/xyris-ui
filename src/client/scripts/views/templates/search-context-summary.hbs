@@ -1,12 +1,45 @@
-<div class='one columns'>
-  <!-- <div class='sc-summary-icon search'></div> -->
-  <div class='sc-summary-icon entypo-icon'>&#128319;</div>
+<div class='row sc-summ-query-cont'>
+  <div class='one columns entypo-icon sc-summary-icon'>
+    &#128319;
+  </div>
+  <div class='eleven columns sc-summary-query'>
+    <h4 class='subheader'>
+      {{query}}
+    </h4>
+  </div>
 </div>
-<div class='eleven columns'>
-  <h4 title='{{altQuery}}' class='subheader sc-summary-query'> 
-    {{query}}
-    {{#if filterKeyword}}
-      > {{filterKeyword}}
-    {{/if}}
-  </h4>
+<p class='sc-summ-keyword-header row'>
+  Context used for search
+</p>
+<div class='row sc-summ-keyword-cont'>
+  <div class='twelve columns'>
+  {{#each contextKeywords}}
+    <a class='sc-sum-keywords'>
+      {{this}}
+    </a>
+  {{/each}}
+  </div>
 </div>
+<div class='row sc-summ-actions'>
+  <a id='summ-show-result' class='sc-summ-action columns active'>
+    <span class='entypo-icon sc-summ-action-icon'>&#57349;</span>
+    <span class='entypo-icon sc-summ-action-bg'>&#9679;</span>
+    <span class='sc-summ-action-label'>search result</span>
+  </a>
+  <a id='summ-show-trail' class='sc-summ-action columns'>
+    <span class='entypo-icon sc-summ-action-icon'>&#59196;</span>
+    <span class='entypo-icon sc-summ-action-bg'>&#9679;</span>
+    <span class='sc-summ-action-label'>search trail</span>
+  </a>
+  <a id='summ-info-prospects' class='sc-summ-action columns'>
+    <span class='entypo-icon sc-summ-action-icon'>&#128640;</span>
+    <span class='entypo-icon sc-summ-action-bg'>&#9679;</span>
+    <span class='sc-summ-action-label'>information prospects</span>
+  </a>
+  <a id='summ-show-search-context' class='sc-summ-action columns'>
+    <span class='entypo-icon sc-summ-action-icon'>&#59198;</span>
+    <span class='entypo-icon sc-summ-action-bg'>&#9679;</span>
+    <span class='sc-summ-action-label'>show search context</span>
+  </a>
+</div>
+<hr class='row sc-summ-actions-line'></hr>

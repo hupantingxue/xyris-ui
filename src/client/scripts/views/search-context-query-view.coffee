@@ -14,7 +14,6 @@ define [
   'use strict'
 
   class SearchContextQueryView extends View
-    autoRender: no
     containerMethod: 'prepend'
     tagName: 'textarea'
     className: 'search-query'
@@ -33,6 +32,9 @@ define [
       super
       @typeahead_model = new Model
       @listenTo @typeahead_model, 'change', @showTypeaheadSuggestion
+
+      @searchContextId = @options.newSearchContext.searchContextId
+      @stageId = @options.newSearchContext.stageId
 
     highlightTextBox: ->
       @$el.effect('highlight', {easing: 'easeOutCubic'})
@@ -84,7 +86,7 @@ define [
       keyCode = $.ui.keyCode
       switch event.keyCode
         when keyCode.ENTER, keyCode.NUMPAD_ENTER
-          @publishEvent '!router:routeByName', 'search_web', {query: @query, searchContextId: @model.attributes.searchContextId, stageId: @model.attributes.stageId}, {}, (url) =>
+          @publishEvent '!router:routeByName', 'search_result', {cat: 'web', query: @query, searchContextId: @searchContextId, stageId: @stageId}, {}, (url) =>
         when keyCode.ESCAPE
           @$el.val('')
         when keyCode.TAB

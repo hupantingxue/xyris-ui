@@ -4,6 +4,15 @@ define ->
   # The routes for the application. This module returns a function.
   # `match` is match method of the Router
   (match) ->
+    match 'search/:cat/:searchContextId/:stageId/:query',
+          'search-result#show',
+          name: 'search_result'
+
+    ###
+    match 'search/:cat/:searchContextId/:stageId/:query/:filterKeyword',
+          'search-result#show',
+          name: 'search_result'
+
     match 'search/books/:searchContextId/:stageId/:query',
           'search-books#show',
           name: 'search_books'
@@ -23,5 +32,6 @@ define ->
     match 'search/news/:query',
           'search-news#show',
           name: 'search_news'
+    ###
 
-    match '', 'publish-event#show_search', name: 'show_search'
+    match '', 'dummy#do_nothing', name: 'index'

@@ -4,6 +4,8 @@ define [
 ], (Handlebars, View) ->
   'use strict'
 
+  # @deprecated
+  #   will be either removed or its purpose will entirely change
   class PageView extends View
     renderedSubviews: no
 

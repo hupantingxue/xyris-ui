@@ -116,7 +116,7 @@ module.exports = (grunt) ->
           appDir: 'build/client/'
           mainConfigFile: 'build/client/scripts/initialize.js'
           dir: 'dist/client'
-          optimize: 'uglify2'
+          optimize: 'none'
           modules: [
             {
               name: 'initialize'
@@ -125,13 +125,13 @@ module.exports = (grunt) ->
               ]
             },
             {
-              name: 'controllers/search-web-controller'
+              name: 'controllers/search-result-controller'
               exclude:[
                 'xyris-application'
               ]
             },
             {
-              name: 'controllers/publish-event-controller'
+              name: 'controllers/dummy-controller'
               exclude:[
                 'xyris-application'
               ]

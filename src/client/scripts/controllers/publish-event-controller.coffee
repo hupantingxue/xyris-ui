@@ -5,5 +5,5 @@ define [
 
   class PublishEventController extends Controller
 
-    show_search: ->
-      @publishEvent 'searchctxt:show_search', {}
+    show_search_context_page: ->
+      @publishEvent 'searchctxt:show_search_context_page', {}

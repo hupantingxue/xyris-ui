@@ -20,6 +20,7 @@ define [
       # Initialize core components
       @initDispatcher controllerSuffix: '-controller'
       @initLayout()
+      @initComposer()
       @initMediator()
 
       # Application-specific scaffold
@@ -35,6 +36,9 @@ define [
       #
       # Freeze the application instance to prevent further changes
       Object.freeze? this
+
+    initComposer: (options ={}) ->
+      @composer = new Chaplin.Composer options
 
     # Override standard layout initializer
     # ------------------------------------

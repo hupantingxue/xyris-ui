@@ -1,21 +1,75 @@
 define [
   'config'
   'controllers/base/controller'
+  'models/search-context/search-context'
   'models/search-context'
   'views/search-context-page-view'
-], (config, Controller, SearchContext, SearchContextPageView) ->
+  'views/search-context-query-view'
+  'views/context-keyword/search-context-keywords-page-view'
+], (config,
+    Controller,
+    SearchContext,
+    SearchContextOld,
+    SearchContextPageView,
+    SearchContextQueryView,
+    SearchContextKeywordsPageView) ->
   'use strict'
 
+  # SearchContextController is the default controller
+  # that gets intiated for the first time and then persist
+  #
+  # Important tasks it does are
+  # ---------------------------
+  # - Instantiate and intialize SearchContext object
   class SearchContextController extends Controller
     initialize: ->
-      @subscribeEvent 'searchctxt:show_search', (attributes) =>
-        @show()
-
-    show: ->
+      super
       @url = config.api.versionRoot
+      @subscribeEvent 'matchRoute', (route, params, options) =>
+        @model = new SearchContext if ! @model?
 
-      @model = new SearchContext
-      @model.url = @url + "/searchctxt/init"
+        window.model = @model
+        # If route is search_result it should contain
+        # both searchContextId and stageId
+        #
+        # Get all information of the stage and store in
+        # searchContext as the current stage
+        if route.name == 'search_result'
+          if params.searchContextId? and params.stageId? and params.query
+            # fetching the currentSearchContextInfo
+            @publishEvent 'searchContext:getCurrentSearchContext',
+              params.searchContextId,
+              params.stageId,
+              params.query
+              (currenSearchContext) =>
+            @model.deleteNewSearchContext()
 
-      @view = new SearchContextPageView {model: @model}
-      @model.fetch()
+        else if route.name == 'index'
+          # here it require a new search Context id and first stage id
+          # to be fetched to initiate
+          # the searchContext info is stored in a new stage which becomes
+          # active as soon as user searches
+          @model.url = @url + '/searchctxt/init'
+
+          @model.on 'change:newSearchContext', (thisModel, newSearchContext) =>
+            @compose 'sc-search-context-page', SearchContextPageView,
+                region: 'searchContext'
+                autoRender: true
+                newSearchContext: newSearchContext
+
+            @compose 'sc-search-context-query', SearchContextQueryView,
+                region: 'searchContextQuery'
+                autoRender: true
+                newSearchContext: newSearchContext
+
+            @compose 'sc-context-keywords', SearchContextKeywordsPageView,
+                region: 'contextKeywordsSuggest'
+                autoRender: true
+                newSearchContext: newSearchContext
+
+          @model.fetch()
+        else
+          console.log('[ERROR] new case')
+          console.log(route)
+          console.log(params)
+          console.log(options)

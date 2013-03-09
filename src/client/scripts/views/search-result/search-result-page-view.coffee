@@ -1,32 +1,33 @@
 define [
-  'jquery'
-  'models/base/model'
-  'views/base/page-view'
-  'views/search-result/search-results-view'
-  'views/search-result/search-result-doctype-view'
-], ($, Model, PageView, SearchResultsView,  SearchResultDoctypeView) ->
+  'views/base/view'
+  'text!views/templates/search-result-page.hbs'
+], (View,
+    template) ->
   'use strict'
 
-  class SearchResultPageView extends PageView
-    container: '#main-content'
+  # [RECONSIDER]
+  # Name of the class might more suite to be SearchResultLayoutView
+  # As Layout View only defines regions and contain no
+  # subviews.
+  # LayoutViews only listens on events whose purpose should
+  # be restricted to actions like transition or display changes
+  # of regions defined
+  class SearchResultPageView extends View
     tagName: 'div'
+    className: 'search-result-page'
+    template: template
+    containerMethod: 'html'
+
+    # Regions identified by SearchResultController and used
+    # to assign different views to it
+    # all region selectors are relative this this container
+    regions:
+      '#searchOptions': 'searchOptions'
+      '#searchResultOptions': 'searchResultOptions'
+      '#searchContextSummary': 'searchContextSummary'
+      '#search-results': 'searchResults'
+      '#contextKeywords': 'contextKeywords'
+      '#searchResultDetail': 'searchResultDetail'
 
     initialize: ->
       super
-
-    renderSubviews: ->
-      super
-      @search_results_view = new SearchResultsView
-        collection: @collection
-        container: @$el
-        itemView: @options.resultItemView
-      @search_results_view.render()
-
-      @doctype_model = new Model
-      @doctype_model.set
-        searchContextId: @options.contextInfo.searchContextId
-        stageId: @options.contextInfo.stageId
-        query: encodeURIComponent(@options.contextInfo.query)
-
-      @search_result_doctype_view = new SearchResultDoctypeView
-        model: @doctype_model

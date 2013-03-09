@@ -5,7 +5,7 @@ define [
   'chaplin/lib/delayer'
   'models/context-keyword/keyword'
   'models/context-keyword/keywords'
-  'views/base/page-view'
+  'views/base/view'
   'views/context-keyword/keywords-view'
   'views/context-keyword/keyword-entry-view'
   'text!views/templates/context-keyword/keyword-page.hbs'
@@ -15,14 +15,14 @@ define [
     Delayer,
     Keyword,
     Keywords,
-    PageView,
+    View,
     KeywordsView,
     KeywordEntryView,
     template) ->
 
   'use strict'
 
-  class KeywordsPageView extends PageView
+  class ContextKeywordsPageView extends View
     template: template
 
     _(@prototype).extend Delayer
@@ -31,14 +31,28 @@ define [
       super
       @url = config.api.versionRoot
       @collection = new Keywords null, model: Keyword
-      @render()
+
+    initiateKeywordUpdate: (attributes) ->
+      if !@keywords_view?
+        @storedQueryAttributes = attributes
+        return
+
+      if attributes.query != ''
+        query = encodeURIComponent(attributes.query)
+        @setTimeout("updateKeywords", 400, @updateKeywords(query, null))
+      else
+        @collection.reset()
+
+    attach: ->
+      super
+      @delegate 'click', '#ctxt-keyword-result-header', @renderSubviews
 
     updateKeywords: (query, keyid) ->
       url =
         @url +
         "/searchctxt/get/keyword?" +
-        "scid=#{@model.get('searchContextId')}" +
-        "&stgid=#{@model.get('stageId')}"
+        "scid=#{@searchContextId}" +
+        "&stgid=#{@stageId}"
 
       if query?
         return () =>
@@ -50,7 +64,12 @@ define [
           @collection.fetch()
 
     renderSubviews: ->
-      super
+      if @keywords_view?
+        @keywords_view.dispose()
+
+      @$el.find('#ctxt-keyword-result-header').addClass('active')
+
+      @collection.reset()
       @keywords_view = new KeywordsView
         collection: @collection
         container: @$('#ctxt-keyword-result-container')
@@ -59,12 +78,8 @@ define [
 
       @keywords_view.render()
 
-      @subscribeEvent 'searchctxt:queryEntered', (attributes) =>
-        if attributes.query != ''
-          query = encodeURIComponent(attributes.query)
-          @setTimeout("updateKeywords", 400, @updateKeywords(query, null))
-        else
-          @collection.reset()
+      if @storedQueryAttributes?
+        @initiateKeywordUpdate(@storedQueryAttributes)
 
       @subscribeEvent 'ctxtkeyword:clicked', (attributes) =>
         @setTimeout("updateKeywords",

@@ -15,14 +15,12 @@ define [
 
     attach: ->
       super
-      ###
-      Removed the background highlighting of context keywords
-      index = @model.collection.indexOf(@model)
-      opacity = if index <= 8 then 10 - index else 2
-      opacity = opacity/10
-      @$('div.keyword-background').css({'opacity': "#{opacity}"})
-      ###
-      @delegate 'click', (event) =>
+      @delegate 'click', 'h6', (event) =>
         @publishEvent 'ctxtkeyword:clicked',
+          keyword: @model.get('name')
+          keyid: @model.get('keyid')
+
+      @delegate 'click', 'span', (event) =>
+        @publishEvent 'ctxtkeyword:selected',
           keyword: @model.get('name')
           keyid: @model.get('keyid')
