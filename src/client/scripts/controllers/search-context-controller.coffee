@@ -1,5 +1,6 @@
 define [
   'config'
+  'lib/search-helper'
   'controllers/base/controller'
   'models/search-context/search-context'
   'models/search-context'
@@ -7,6 +8,7 @@ define [
   'views/search-context-query-view'
   'views/context-keyword/search-context-keywords-page-view'
 ], (config,
+    searchHelper,
     Controller,
     SearchContext,
     SearchContextOld,
@@ -34,7 +36,7 @@ define [
         #
         # Get all information of the stage and store in
         # searchContext as the current stage
-        if route.name == 'search_result'
+        if searchHelper.isValidRouteName(route.name)
           if params.searchContextId? and params.stageId? and params.query
             # fetching the currentSearchContextInfo
             @publishEvent 'searchContext:getCurrentSearchContext',
@@ -45,6 +47,7 @@ define [
             @model.deleteNewSearchContext()
 
         else if route.name == 'index'
+          console.log('index inside')
           # here it require a new search Context id and first stage id
           # to be fetched to initiate
           # the searchContext info is stored in a new stage which becomes
@@ -69,6 +72,7 @@ define [
 
           @model.fetch()
         else
+          throw new Error "invalid route.name #{route.name}"
           console.log('[ERROR] new case')
           console.log(route)
           console.log(params)

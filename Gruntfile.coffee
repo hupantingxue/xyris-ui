@@ -135,6 +135,27 @@ module.exports = (grunt) ->
               exclude:[
                 'xyris-application'
               ]
+            },
+            {
+              name: 'controllers/web-search-controller'
+              exclude: [
+                'xyris-application',
+                'controllers/search-result-controller'
+              ]
+            },
+            {
+              name: 'controllers/rsrchart-search-controller'
+              exclude: [
+                'xyris-application',
+                'controllers/search-result-controller'
+              ]
+            },
+            {
+              name: 'controllers/docs-search-controller'
+              exclude: [
+                'xyris-application',
+                'controllers/search-result-controller'
+              ]
             }
           ]
     coffeelint:

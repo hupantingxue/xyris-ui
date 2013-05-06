@@ -12,6 +12,14 @@ define [
   # LayoutViews only listens on events whose purpose should
   # be restricted to actions like transition or display changes
   # of regions defined
+  #
+  # [Functionality to add]
+  # region transformation or transitions on certain events
+  # Notes:
+  # when a search result is clicked then the searchResults region
+  # is transitioned to rightmost seaction. and searchResultDetails
+  # region is composed approprietly by their respective SearchResult
+  # View.
   class SearchResultPageView extends View
     tagName: 'div'
     className: 'search-result-page'
@@ -31,3 +39,4 @@ define [
 
     initialize: ->
       super
+      @invertedRegions = _.invert(@regions)

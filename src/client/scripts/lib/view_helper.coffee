@@ -5,5 +5,3 @@ define [
   'use strict'
 
   mediator = Chaplin.mediator
-
-  

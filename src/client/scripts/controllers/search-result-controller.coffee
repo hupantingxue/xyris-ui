@@ -5,14 +5,12 @@ define [
   'views/search-result/search-options-view'
   'views/search-context/search-context-summary-view'
   'views/context-keyword/search-result-keywords-page-view'
-  'views/search-result/search-results-view'
 ], ($,
     Controller,
     SearchResultPageView,
     SearchOptionsView,
     SearchContextSummaryView,
-    SearchResultKeywordsPageView,
-    SearchResultsView) ->
+    SearchResultKeywordsPageView) ->
 
   'use strict'
 
@@ -21,11 +19,19 @@ define [
   #
   # Guidelines:
   # all composed elements' name should start with 'sr-'
+  # [Abstract class child class to implement show]
   class SearchResultController extends Controller
+
+    initialize: ->
+      # Make show an abstract function
+      if !@show?
+        throw new Error "Child class extending SearchResultController should implement show"
+      super
 
     beforeAction:
       '.*': (params, options, previous) ->
       'show': (params, options, previous) ->
+        console.log(params.cat)
         # Start composing the page with common elements
 
         # Create SearchResultPageView which create basic layout in
@@ -63,26 +69,3 @@ define [
           category: params.cat
           query: params.query
           autoRender: true
-
-    show: (params) ->
-      # Data included in params
-      # params.cat = ['web', 'rsrchart', 'docs']
-      # params.searchContextId
-      # params.stageId
-      # params.query
-
-      # [MODIFY] Use trigger for this purpose
-      # Maybe BaseLayoutPageView should decide what to hide and show here
-      $('.on-page').removeClass('on-page').addClass('off-page')
-      $('#main').addClass('on-page').removeClass('off-page')
-
-      # compose (straightforward compose as it will always require replacing)
-      #   SearchResultsView in region searchResults
-
-      @compose 'sr-search-results', SearchResultsView,
-        region: 'searchResults'
-        searchContextId: params.searchContextId
-        stageId: params.stageId
-        category: params.cat
-        query: params.query
-        filterKeyword: params.filterKeyword if params.filterKeyword?

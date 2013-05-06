@@ -5,20 +5,23 @@ define [
   'views/base/collection-view'
   'views/web/result-entry-view'
 ], (config,
-    SearchResults,
-    SearchResultEntry,
+    WebSearchResults,
+    WebSearchResultEntry,
     CollectionView,
-    SearchResultEntryView) ->
+    WebSearchResultEntryView) ->
   'use strict'
 
-  class SearchResultsView extends CollectionView
+  # [Functionality to add]
+  # on click of search result compose the result entry
+  # detail to searchResultDetail region.
+  class WebSearchResultsView extends CollectionView
     className: 'search-results twelve columns'
     tagName: 'div'
-    itemView: SearchResultEntryView
+    itemView: WebSearchResultEntryView
 
     initialize: ->
       @baseUrl = config.api.versionRoot
-      @collection = new SearchResults null, model: SearchResultEntry
+      @collection = new WebSearchResults null, model: WebSearchResultEntry
       @collection.url = @baseUrl + "/search/web?" +
                         "q=#{@options.query}" +
                         "&ctxtid=#{@options.searchContextId}" +

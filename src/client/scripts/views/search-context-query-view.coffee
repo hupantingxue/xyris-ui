@@ -86,7 +86,7 @@ define [
       keyCode = $.ui.keyCode
       switch event.keyCode
         when keyCode.ENTER, keyCode.NUMPAD_ENTER
-          @publishEvent '!router:routeByName', 'search_result', {cat: 'web', query: @query, searchContextId: @searchContextId, stageId: @stageId}, {}, (url) =>
+          @publishEvent '!router:routeByName', 'web_search', {query: @query, searchContextId: @searchContextId, stageId: @stageId}, {}, (url) =>
         when keyCode.ESCAPE
           @$el.val('')
         when keyCode.TAB

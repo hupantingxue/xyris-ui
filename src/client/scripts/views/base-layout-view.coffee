@@ -1,7 +1,9 @@
 define [
+  'lib/search-helper'
   'views/base/view'
   'text!views/templates/base-layout.hbs'
-], (View,
+], (searchHelper,
+    View,
     template) ->
   'use strict'
 
@@ -31,13 +33,9 @@ define [
       super
       @invertedRegions = _.invert(@regions)
       @subscribeEvent 'matchRoute', (route, params, options) =>
-        if route.name == 'search_result'
+        if searchHelper.isValidRouteName(route.name)
           @$el.find(@invertedRegions.searchContext).hide()
           @$el.find(@invertedRegions.main).show()
         else if route.name == 'index'
           @$el.find(@invertedRegions.searchContext).show()
           @$el.find(@invertedRegions.main).hide
-
-
-
-
