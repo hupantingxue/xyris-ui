@@ -27,3 +27,5 @@ Icon
 .Trashes
 
 .tags
+*.sublime-project
+*.sublime-workspace
