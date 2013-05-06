@@ -1,0 +1,19 @@
+<div class='vertical-line'></div>
+<div class='search-result-desc ten columns'>
+  <h5 class='subheader'>{{title}}</h5>
+  <h6 class='subheader'><i>source:&nbsp;{{source.link}}</i></h6>
+  <div class='snippet-container'>
+    <div class='snippet'>
+    {{#each snippets}}
+      <div><h6 class='subheader'>{{{this}}}</h6></div>
+    {{/each}}
+    </div>
+  </div>
+  </div>
+<div class='search-result-options two columns'>
+  <ul class='inline-list options'>
+    <li title='Open link in new tab'><a href='{{url}}' target='_blank'><i class='icon-external-link' ></i></a></li>
+    <li class='result-bookmark'><i class='icon-bookmark' title='Bookmark to reading list'></i></li>
+  </ul>
+</div>
+

@@ -1,10 +1,10 @@
 define [
   'jquery'
   'controllers/search-result-controller'
-  'views/web/search-results-view'
+  'views/search/result/web/search-results-view'
 ], ($,
     SearchResultController,
-    WebSearchResultsView) ->
+    SearchResultsView) ->
 
   'use strict'
 
@@ -17,7 +17,7 @@ define [
       # params.stageId
       # params.query
 
-      @compose 'sr-search-results', WebSearchResultsView,
+      @compose 'sr-search-results', SearchResultsView,
         region: 'searchResults'
         searchContextId: params.searchContextId
         stageId: params.stageId

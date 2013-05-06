@@ -1,12 +1,10 @@
 define [
   'jquery'
   'views/base/view'
-  'text!views/templates/web-result-entry.hbs'
-], ($, View, template) ->
+], ($, View) ->
   'use strict'
 
-  class WebResultEntryView extends View
-    template: template
+  class BaseResultEntryView extends View
     tagName: 'div'
     className: 'search-result-entry row'
     autoRender: true

@@ -1,9 +1,9 @@
 define [
   'jquery'
   'controllers/base/controller'
-  'views/search-result/search-result-page-view'
-  'views/search-result/search-options-view'
-  'views/search-context/search-context-summary-view'
+  'views/search/result/page-view'
+  'views/search/options-view'
+  'views/search/context/summary-view'
   'views/context-keyword/search-result-keywords-page-view'
 ], ($,
     Controller,

@@ -1,9 +1,10 @@
 define [
+  'underscore'
   'models/base/model'
-], (Model) ->
+], (_, Model) ->
   'use strict'
 
-  class BookResultEntry extends Model
+  class WebResultEntry extends Model
     urlKey: 'id'
     urlPath: ->
       "/book/"

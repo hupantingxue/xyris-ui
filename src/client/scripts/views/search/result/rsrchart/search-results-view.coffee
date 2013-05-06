@@ -1,27 +1,27 @@
 define [
   'config'
-  'models/search/search-results'
-  'models/web/result-entry'
+  'models/base/collection'
+  'models/search/result/rsrchart-entry'
   'views/base/collection-view'
-  'views/web/result-entry-view'
+  'views/search/result/rsrchart/result-entry-view'
 ], (config,
-    WebSearchResults,
-    WebSearchResultEntry,
+    SearchResults,
+    SearchResultEntry,
     CollectionView,
-    WebSearchResultEntryView) ->
+    SearchResultEntryView) ->
   'use strict'
 
   # [Functionality to add]
   # on click of search result compose the result entry
   # detail to searchResultDetail region.
-  class WebSearchResultsView extends CollectionView
+  class RsrchartSearchResultsView extends CollectionView
     className: 'search-results twelve columns'
     tagName: 'div'
-    itemView: WebSearchResultEntryView
+    itemView: SearchResultEntryView
 
     initialize: ->
       @baseUrl = config.api.versionRoot
-      @collection = new WebSearchResults null, model: WebSearchResultEntry
+      @collection = new SearchResults null, model: SearchResultEntry
       @collection.url = @baseUrl + "/search/web?" +
                         "q=#{@options.query}" +
                         "&ctxtid=#{@options.searchContextId}" +

@@ -2,16 +2,14 @@ define [
   'config'
   'lib/search-helper'
   'controllers/base/controller'
-  'models/search-context/search-context'
-  'models/search-context'
-  'views/search-context-page-view'
-  'views/search-context-query-view'
+  'models/search/context/search-context'
+  'views/search/context/page-view'
+  'views/search/context/query-view'
   'views/context-keyword/search-context-keywords-page-view'
 ], (config,
     searchHelper,
     Controller,
     SearchContext,
-    SearchContextOld,
     SearchContextPageView,
     SearchContextQueryView,
     SearchContextKeywordsPageView) ->

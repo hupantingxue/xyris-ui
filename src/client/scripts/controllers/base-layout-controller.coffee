@@ -10,6 +10,6 @@ define [
       super
       @show()
 
-    show:  ->
+    show: ->
       @base_layout_view = new BaseLayoutView
 

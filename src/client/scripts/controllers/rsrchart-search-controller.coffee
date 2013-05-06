@@ -1,14 +1,14 @@
 define [
   'jquery'
   'controllers/search-result-controller'
-  'views/web/search-results-view'
+  'views/search/result/rsrchart/search-results-view'
 ], ($,
     SearchResultController,
     SearchResultsView) ->
 
   'use strict'
 
-  class WebSearchController extends SearchResultController
+  class RsrchartSearchController extends SearchResultController
 
      show: (params) ->
       # Data included in params

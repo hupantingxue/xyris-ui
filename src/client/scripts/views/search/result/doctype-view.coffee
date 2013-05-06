@@ -9,7 +9,7 @@ define [
     template: template
     container: '#left-sidebar'
     containerMethod: 'html'
-   
+
     initialize: ->
       super
 
