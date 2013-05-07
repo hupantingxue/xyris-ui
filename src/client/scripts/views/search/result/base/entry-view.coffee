@@ -19,9 +19,3 @@ define [
         directionalNavRightText: ''
         directionalNavLeftText: ''
       ).trigger('orbit.stop')
-
-      @$el.hover((event)=>
-        @$el.addClass('hover')
-      (event) =>
-        @$el.removeClass('hover')
-      )

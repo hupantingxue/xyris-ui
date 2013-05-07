@@ -370,40 +370,23 @@ textarea.search-query
       left: 9px
   .search-result-entry
     font-family: "Source Sans Pro", sans-serif
-    &.hover
-      .search-result-score
-        i
-          color: $cs-dark-grey
-        span
-          color: white
-    .search-result-score
-      cursor: pointer
-      i
-        font-size: 44px
-        color: $cs-light-grey
-      span
-        z-index: 4
-        position: absolute
-        top: 16px
-        left: 20px
-        color: $cs-dark-grey
     .search-result-desc
       cursor: pointer
     .search-result-options
       padding-right: 0px
+      padding-left: 10px
+      border-left: 1px solid $cs-light-grey
       display: none
-    .options
-      li.result-bookmark
-        margin-left: 20px
-      i
-        color: $cs-light-grey
-        margin-bottom: 14px
+      li
         cursor: pointer
-        font-size: 16px
-    &.hover
-      .options
-        i
+        color: $cs-dark-grey
+        a
           color: $cs-dark-grey
+    &:hover
+      .search-result-options
+        display: block
+        li:hover
+          border-bottom: 1px solid $cs-dark-grey
     font-size: 14px
     margin-bottom: 36px
     h5
@@ -438,7 +421,7 @@ textarea.search-query
       .orbit-slide
         h6
           color: $cs-dark-grey
-    &.hover
+    &:hover
       .orbit-wrapper
         .slider-nav
           display: block !important

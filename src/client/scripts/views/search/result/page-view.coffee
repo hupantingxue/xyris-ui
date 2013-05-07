@@ -1,7 +1,9 @@
 define [
+  'jquery'
   'views/base/view'
   'text!views/templates/search-result-page.hbs'
-], (View,
+], ($,
+    View,
     template) ->
   'use strict'
 
@@ -26,6 +28,27 @@ define [
     template: template
     containerMethod: 'html'
 
+    # defined states of SearchResultPage are
+    # - search-result-view
+    # - search-result-detail-view
+    # - search-context-edit-view
+    # - search-trail-view
+    # - information-prospect-view
+    #
+    # These states are used to identify and manage what different section
+    # are visible and corresponding transition from one state to another
+
+    statesDef: {
+      'search-result-view': {
+        'action': (oldState) =>
+          console.log('changed to search-result-view state')
+      },
+      'search-result-detail-view': {
+        'action': (oldState) =>
+          @$(@invertedRegions['searchResultDetail']).show()
+          @$(@invertedRegions['searchResults']).removeClass('twelve').addClass('three')
+      }
+    }
     # Regions identified by SearchResultController and used
     # to assign different views to it
     # all region selectors are relative this this container
@@ -40,3 +63,7 @@ define [
     initialize: ->
       super
       @invertedRegions = _.invert(@regions)
+      @currentState = 'search-result-view'
+      @subscribeEvent 'searchResultPage:changeState', (attributes, callback) =>
+        @statesDef[attributes.state]['action'](@currentState)
+        @currentState = attributes.state

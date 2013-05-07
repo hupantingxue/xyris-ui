@@ -61,11 +61,3 @@ define [
           stageId: params.stageId
           category: params.cat
           query: params.query
-
-        @compose 'sr-context-keywords', SearchResultKeywordsPageView,
-          region: 'contextKeywords'
-          searchContextId: params.searchContextId
-          stageId: params.stageId
-          category: params.cat
-          query: params.query
-          autoRender: true
