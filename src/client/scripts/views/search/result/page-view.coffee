@@ -38,23 +38,33 @@ define [
     # These states are used to identify and manage what different section
     # are visible and corresponding transition from one state to another
 
-    statesDef: {
-      'search-result-view': {
-        'action': (oldState) =>
-          console.log('changed to search-result-view state')
-      },
-      'search-result-detail-view': {
-        'action': (oldState) =>
-          @$(@invertedRegions['searchResultDetail']).show()
-          @$(@invertedRegions['searchResults']).removeClass('twelve').addClass('three')
-      }
-    }
+    statesDef:
+      'search-result-view': 'searchResultViewAction'
+      'search-result-detail-view': 'searchResultDetailViewAction'
+
+    searchResultViewAction: (oldState) =>
+      region = (name) => @$(@invertedRegions[name])
+      region('searchResultOptions').hide()
+      region('searchOptions').show()
+      region('searchResultContainer').addClass('seven').removeClass('four').removeClass('sidelined')
+      region('searchResultDetail').hide()
+      region('contextKeywords').hide()
+
+    searchResultDetailViewAction: (oldState) =>
+      region = (name) => @$(@invertedRegions[name])
+      region('searchOptions').hide()
+      region('searchResultOptions').show()
+      region('searchResultContainer').removeClass('seven').addClass('four sidelined')
+      region('searchResultDetail').show()
+      region('contextKeywords').hide()
+
     # Regions identified by SearchResultController and used
     # to assign different views to it
     # all region selectors are relative this this container
     regions:
       '#searchOptions': 'searchOptions'
       '#searchResultOptions': 'searchResultOptions'
+      '#search-result-container': 'searchResultContainer'
       '#searchContextSummary': 'searchContextSummary'
       '#search-results': 'searchResults'
       '#contextKeywords': 'contextKeywords'
@@ -65,5 +75,6 @@ define [
       @invertedRegions = _.invert(@regions)
       @currentState = 'search-result-view'
       @subscribeEvent 'searchResultPage:changeState', (attributes, callback) =>
-        @statesDef[attributes.state]['action'](@currentState)
+        @[@statesDef[attributes.state]](@currentState)
         @currentState = attributes.state
+        callback(true)

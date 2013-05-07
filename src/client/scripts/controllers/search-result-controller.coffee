@@ -31,7 +31,6 @@ define [
     beforeAction:
       '.*': (params, options, previous) ->
       'show': (params, options, previous) ->
-        console.log(params.cat)
         # Start composing the page with common elements
 
         # Create SearchResultPageView which create basic layout in

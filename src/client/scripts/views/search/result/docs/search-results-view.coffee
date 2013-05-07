@@ -31,3 +31,10 @@ define [
       # assign listeners to collection
       super
       @collection.fetch()
+
+      @subscribeEvent 'searchresultentry:clicked', (attributes) =>
+        model = attributes.model
+        @publishEvent '!router:route',
+          "search/docs/#{@options.searchContextId}/#{@options.stageId}/#{@options.query}/detail/#{model.id}",
+          model: model
+          scrollPos: attributes.scrollPos

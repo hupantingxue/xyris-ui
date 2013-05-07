@@ -19,3 +19,12 @@ define [
         directionalNavRightText: ''
         directionalNavLeftText: ''
       ).trigger('orbit.stop')
+
+      @delegate 'click', '.search-result-desc', (event) =>
+        event.stopPropagation()
+        event.preventDefault()
+        @publishEvent 'searchresultentry:clicked',
+          model: @model
+          scrollPos: $(window).scrollTop()
+
+        return false

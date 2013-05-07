@@ -1,0 +1,10 @@
+<div class='entry-content'>
+    <h2 class='subheader title'>{{title}}</h2>
+    <ul>
+        {{#each snippets}}
+        <li>{{{this}}}</li>
+        <li class='more'><a href='{{../url}}' target='_blank'>more</a></li>
+        {{/each}}
+    </ul>
+    <h5 class='subheader source'><i>{{source.link}}</i></h5>
+</div>

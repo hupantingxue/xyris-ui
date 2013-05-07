@@ -16,3 +16,5 @@ module.exports = (app) ->
 
   app.get '/v1/suggest/query/:query', controllers.getSuggestedQueries
   app.get '/v1/typeahead/suggest', controllers.getTypeaheadSuggestion
+
+  app.get '/v1/getWebEntry', controllers.getWebEntry

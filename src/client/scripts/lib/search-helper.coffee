@@ -10,7 +10,6 @@ define [
 
   searchHelper =
     isValidRouteName: (routeName) ->
-      console.log(routeName)
       if $.inArray(routeName, routeNames) != -1
         return true
       else

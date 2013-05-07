@@ -16,6 +16,14 @@ define [
             name: searchOption.routeName,
             params: {
               cat: searchOption.category
+              showDetail: false
             }
 
+      match 'search/' + searchOption.urlKey + '/:searchContextId/:stageId/:query/detail/:id',
+            searchOption.controller + '#show',
+            name: searchOption.routeName,
+            params: {
+              cat: searchOption.category
+              showDetail: true
+            }
     match '', 'dummy#do_nothing', name: 'index'

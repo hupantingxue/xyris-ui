@@ -1,8 +1,10 @@
 define [
+  'jquery'
   'views/base/view'
   'models/base/model'
   'text!views/templates/search-result/search-options.hbs'
-], (View,
+], ($,
+    View,
     Model,
     template) ->
   'use strict'
@@ -21,3 +23,8 @@ define [
     attach: ->
       super
       @$el.find('li.' + @options.category).addClass('active')
+      @$el.css(
+        left: @$el.offset().left
+        top: '75px'
+        position: 'fixed'
+      )
