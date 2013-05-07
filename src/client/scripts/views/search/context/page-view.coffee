@@ -33,6 +33,16 @@ define [
     attach: ->
       super
 
+      @delegate 'click', '.sc-sum-keywords', (event) =>
+        @publishEvent 'ctxtkeyword:clicked',
+          keyid: event.target.id.substring(8)
+          keyword: $(event.target).html()
+
+      @delegate 'click', '#add-context-keywords', () =>
+        @publishEvent 'ctxtkeyword:show', {}, (success) =>
+          @$("#add-context-keywords").hide()
+          @$("#search-context-keywords").removeClass('search-context-keywords')
+
       @subscribeEvent 'ctxtkeyword:selected', (attributes) =>
         @publishEvent 'searchContext:persistContextKeyword', attributes, (success) =>
           if !success
@@ -51,6 +61,7 @@ define [
 
       @subscribeEvent 'searchctxt:queryEntered', (attributes) =>
         if attributes.query == ""
+          @$("#search-context-keywords").hide()
           @$("#search-hint").show()
           @$("#search-context-suggest").hide()
           @$('.web a').attr('href', '#')
@@ -59,6 +70,7 @@ define [
         else
           @$("#search-hint").hide()
           @$("#search-context-suggest").show()
+          @$("#search-context-keywords").show()
 
           query = encodeURIComponent(attributes.query)
           @$('.web a').attr('href',

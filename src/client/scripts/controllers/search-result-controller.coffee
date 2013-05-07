@@ -4,7 +4,7 @@ define [
   'views/search/result/page-view'
   'views/search/options-view'
   'views/search/context/summary-view'
-  'views/context-keyword/search-result-keywords-page-view'
+  'views/search/result/keywords/page-view'
 ], ($,
     Controller,
     SearchResultPageView,

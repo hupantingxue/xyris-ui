@@ -5,7 +5,7 @@ define [
   'models/search/context/search-context'
   'views/search/context/page-view'
   'views/search/context/query-view'
-  'views/context-keyword/search-context-keywords-page-view'
+  'views/search/context/keywords/page-view'
 ], (config,
     searchHelper,
     Controller,
