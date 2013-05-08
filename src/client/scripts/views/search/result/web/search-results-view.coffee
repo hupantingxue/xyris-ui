@@ -2,22 +2,18 @@ define [
   'config'
   'models/base/collection'
   'models/search/result/web-entry'
-  'views/base/collection-view'
+  'views/search/result/base/search-results-view'
   'views/search/result/web/result-entry-view'
 ], (config,
     SearchResults,
     SearchResultEntry,
-    CollectionView,
+    BaseSearchResultsView,
     SearchResultEntryView) ->
   'use strict'
 
-  # [Functionality to add]
-  # on click of search result compose the result entry
-  # detail to searchResultDetail region.
-  class WebSearchResultsView extends CollectionView
-    className: 'search-results twelve columns'
-    tagName: 'div'
+  class WebSearchResultsView extends BaseSearchResultsView
     itemView: SearchResultEntryView
+    searchCat: 'web'
 
     initialize: ->
       @baseUrl = config.api.versionRoot
@@ -31,10 +27,3 @@ define [
       # assign listeners to collection
       super
       @collection.fetch()
-
-      @subscribeEvent 'searchresultentry:clicked', (attributes) =>
-        model = attributes.model
-        @publishEvent '!router:route',
-          "search/web/#{@options.searchContextId}/#{@options.stageId}/#{@options.query}/detail/#{model.id}",
-          model: model
-          scrollPos: attributes.scrollPos

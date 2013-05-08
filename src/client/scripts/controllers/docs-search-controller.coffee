@@ -4,14 +4,14 @@ define [
   'controllers/search-result-controller'
   'views/search/result/docs/search-results-view'
   'views/search/result/docs/entry-detail-view'
-  'views/search/options-view'
+  'views/search/result/detail-options-view'
   'models/search/result/docs-entry'
 ], ($,
     config,
     SearchResultController,
     SearchResultsView,
     DocsEntryDetailView,
-    SearchOptionsView,
+    EntryDetailOptionsView,
     DocsResultEntry) ->
 
   'use strict'
@@ -58,7 +58,7 @@ define [
             autoRender: if options.model.has('title') then true else false
             scrollPos: options.scrollPos
 
-          @compose 'sr-search-options', SearchOptionsView,
+          @compose 'sr-detail-options', EntryDetailOptionsView,
             region: 'searchResultOptions'
             searchContextId: params.searchContextId
             stageId: params.stageId

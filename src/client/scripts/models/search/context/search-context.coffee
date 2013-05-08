@@ -66,6 +66,12 @@ define [
       @subscribeEvent 'searchContext:getNewSearchContext', (callback) =>
         callback @newSearchContext
 
+      @subscribeEvent 'searchContext:navigateToNext', (contextKeywords, cat) =>
+        @publishEvent '!router:route', "search/#{cat}/" +
+          "#{@currentSearchContext.searchContextId}/" +
+          "54657/#{@currentSearchContext.query}"
+        console.log(cat)
+
     setCurrentSearchContext: (searchContextId, stageId) ->
 
     deleteNewSearchContext: () ->

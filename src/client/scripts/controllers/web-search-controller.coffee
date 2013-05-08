@@ -4,14 +4,14 @@ define [
   'controllers/search-result-controller'
   'views/search/result/web/search-results-view'
   'views/search/result/web/entry-detail-view'
-  'views/search/options-view'
+  'views/search/result/detail-options-view'
   'models/search/result/web-entry'
 ], ($,
     config,
     SearchResultController,
     SearchResultsView,
     WebEntryDetailView,
-    SearchOptionsView,
+    EntryDetailOptionsView,
     WebResultEntry) ->
   'use strict'
 
@@ -56,14 +56,19 @@ define [
             model: options.model
             autoRender: if options.model.has('title') then true else false
             scrollPos: options.scrollPos
+            searchContextId: params.searchContextId
+            stageId: params.stageId
+            category: params.cat
+            query: params.query
 
-          @compose 'sr-search-options', SearchOptionsView,
+          @compose 'sr-detail-options', EntryDetailOptionsView,
             region: 'searchResultOptions'
             searchContextId: params.searchContextId
             stageId: params.stageId
             category: params.cat
             query: params.query
             autoRender: true
+            model: options.model
       else
         @publishEvent 'searchResultPage:changeState', {'state': 'search-result-view'}, (success) =>
           console.log("changed state now add data")

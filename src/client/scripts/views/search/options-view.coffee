@@ -24,7 +24,6 @@ define [
       super
       @$el.find('li.' + @options.category).addClass('active')
       @$el.css(
-        left: @$el.offset().left
         top: '75px'
         position: 'fixed'
       )

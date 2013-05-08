@@ -45,7 +45,6 @@ define [
 
     attach: ->
       super
-      # @delegate 'click', '#ctxt-keyword-result-header', @renderSubviews
       @subscribeEvent 'ctxtkeyword:show', (attributes, callback) =>
         @renderSubviews()
         callback(true)

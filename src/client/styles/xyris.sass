@@ -19,6 +19,9 @@ $cs-brown: #4C413F
 $control-font: "Lato", sans-serif
 $content-font: "Source Sans Pro"
 
+.header .top-bar .name
+  margin-right: 0px
+
 body
   font-family: $control-font
   font-weight: 300
@@ -222,6 +225,7 @@ h1, h2, h3, h4, h5, h6
       line-height: 1.1em
       padding: 3px 4px
       margin-bottom: 4px
+      cursor: pointer
       a
         color: $cs-dark-grey
         width: 100%
@@ -232,6 +236,11 @@ h1, h2, h3, h4, h5, h6
       background-color: $cs-light-red
       a
         color: white
+    li.visited
+      a
+        color: $cs-orange
+        font-weight: 500
+        font-style: italic
 
 textarea.search-query
   font-size: 44px
@@ -570,6 +579,7 @@ textarea.search-query
 
 .search-result-detail
   .entry-content
+    font-family: $content-font
     h2.title
       margin-top: -10px
       width: 500px
@@ -582,3 +592,52 @@ textarea.search-query
       width: 460px
     li.more
       font-size: 14px
+
+.discover-more
+  li:first-child
+    &:hover
+      background: none !important
+    border-bottom: 1px solid $cs-dark-grey
+    padding-bottom: 2px
+    margin-bottom: 8px
+    .relevance-header
+      float: right
+      margin-right: 20px
+  max-width: 500px
+  p
+    font-size: 21px
+    font-weight: 300
+  a
+    font-size: 18px
+    float: right
+    margin-right: 4px
+    margin-top: 10px
+    background-color: $cs-blue
+    color: white
+    line-height: 1.3
+    padding: 2px 3px
+  ul
+    list-style: none
+  li
+    float: left
+    width: 100%
+    &:hover
+      background-color: $cs-light-grey
+    span
+      float: right
+      font-size: 30px
+      margin: 0px 2px 0 2px
+      cursor: pointer
+      line-height: 0.7em
+      &.red
+        color: $cs-light-red
+  .name
+    float: left
+  .relevance-cont
+    width: 100px
+    float: right
+    padding-top: 4px
+    div
+      background-color: $cs-orange
+      height: 1em
+      float: right

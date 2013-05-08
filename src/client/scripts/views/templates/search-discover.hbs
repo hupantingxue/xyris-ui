@@ -1,0 +1,17 @@
+<p>Related concepts to further explore</p>
+<ul>
+    <li>
+        <div class='name'>context keywords</div>
+        <div class='relevance-header'>relevance</div>
+    </li>
+    {{#each result}}
+    <li class='discover-keys'>
+        <div class='name'>{{name}}</div>
+        <span id='discover-{{id}}' class='entypo-icon'>&oplus;</span>
+        <div class='relevance-cont'>
+            <div style='width: {{score}}%'></div>
+        </div>
+    </li>
+    {{/each}}
+</ul>
+<a href="#" class='explore'>start exploring</a>
