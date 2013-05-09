@@ -578,6 +578,10 @@ textarea.search-query
         display: none !important
 
 .search-result-detail
+  .discover-cont
+    display: none
+  .deep-dive-cont
+    display: none
   .entry-content
     font-family: $content-font
     h2.title
@@ -592,6 +596,32 @@ textarea.search-query
       width: 460px
     li.more
       font-size: 14px
+    .entry-stats
+      margin: 6px 0px 12px
+      float: left
+      width: 100%
+      & > span
+        float: left
+        display: inline
+        width: auto
+        margin-right: 4px
+      & > span:last-child
+        float: right
+        margin-right: 0px
+      .number
+        font-size: 25px
+        font-weight: 300
+        font-family: $control-font
+        display: block
+        span
+          font-size: 15px
+      .label
+        display: block
+        position: static
+        font-weight: 400
+        font-family: $control-font
+        font-size: 14px
+
 
 .discover-more
   li:first-child

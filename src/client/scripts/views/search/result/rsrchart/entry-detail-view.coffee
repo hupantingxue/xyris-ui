@@ -1,28 +1,9 @@
 define [
-  'jquery'
-  'views/base/view'
+  'views/search/result/base/entry-detail-view'
   'text!views/templates/search-result-entry/rsrchart-entry-detail.hbs'
-], ($,
-    View,
+], (BaseEntryDetailView,
     template) =>
   'use strict'
 
-  class RsrchartEntryDetailView extends View
-    tagName: 'div'
+  class RsrchartEntryDetailView extends BaseEntryDetailView
     template: template
-    containerMethod: 'html'
-
-    initialize: ->
-      super
-      if !@autoRender
-        @listenTo @model, 'change', =>
-          @render()
-      $(window).scrollTop(@options.scrollPos)
-
-    attach: ->
-      super
-      @$el.css(
-        left: @$el.offset().left
-        top: '75px'
-        position: 'fixed'
-      )

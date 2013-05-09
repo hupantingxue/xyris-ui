@@ -57,6 +57,10 @@ define [
             model: options.model
             autoRender: if options.model.has('title') then true else false
             scrollPos: options.scrollPos
+            searchContextId: params.searchContextId
+            stageId: params.stageId
+            category: params.cat
+            query: params.query
 
           @compose 'sr-detail-options', EntryDetailOptionsView,
             region: 'searchResultOptions'
@@ -65,6 +69,7 @@ define [
             category: params.cat
             query: params.query
             autoRender: true
+            model: options.model
       else
         @publishEvent 'searchResultPage:changeState', {'state': 'search-result-view'}, (success) =>
           console.log("changed state now add data")

@@ -41,6 +41,10 @@ define [
 
     attach: ->
       super
-      # [FIX ME]
       @delegate 'click', '.sc-summary-icon', (event) =>
-        @publishEvent 'searchctxt:show', {}
+        @publishEvent '!router:route', ""
+
+      @delegate 'click', '#summ-show-result', (event) =>
+        @publishEvent '!router:route', "search/#{@options.category}/" +
+          "#{@options.searchContextId}/" +
+          "#{@options.stageId}/#{@options.query}"
