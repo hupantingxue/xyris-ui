@@ -23,6 +23,7 @@ define [
       @$el.css(
         top: '75px'
         position: 'fixed'
+        height: '100%'
       )
 
       @subscribeEvent 'searchentryoption:summary', (attributes) =>

@@ -63,7 +63,11 @@ webResult =
       'The principle of relativity, which states that there is no preferred inertial reference frame, dates back to Galileo, and was incorporated into <i class="highlight">Newtonian physics</i>',
       'Two events happening in two different locations that occur simultaneously in the reference frame of one <i class="highlight">inertial observer</i>, may occur non-simultaneously in the reference frame of another <i class="highlight">inertial observer</i>'
     ]
-    score: '98.9'
+    score: {
+      relevant: '14'
+      'new': '128'
+      'percent': '60'
+    }
   },
   {
     id: 2344454
@@ -78,7 +82,11 @@ webResult =
       'The principle of relativity, which states that there is no preferred inertial reference frame, dates back to Galileo, and was incorporated into <i class="highlight">Newtonian physics</i>',
       'Two events happening in two different locations that occur simultaneously in the reference frame of one <i class="highlight">inertial observer</i>, may occur non-simultaneously in the reference frame of another <i class="highlight">inertial observer</i>'
     ]
-    score: '98.9'
+    score: {
+      relevant: '14'
+      'new': '128'
+      'percent': '60'
+    }
   },
   {
     id: 2341454
@@ -93,7 +101,11 @@ webResult =
       'The principle of relativity, which states that there is no preferred inertial reference frame, dates back to Galileo, and was incorporated into <i class="highlight">Newtonian physics</i>',
       'Two events happening in two different locations that occur simultaneously in the reference frame of one inertial observer, may occur non-simultaneously in the reference frame of another inertial observer'
     ]
-    score: '98.9'
+    score: {
+      relevant: '14'
+      'new': '128'
+      'percent': '60'
+    }
   },
   {
     id: 2349454
@@ -108,7 +120,11 @@ webResult =
       'The principle of relativity, which states that there is no preferred inertial reference frame, dates back to Galileo, and was incorporated into <i class="highlight">Newtonian physics</i>',
       'Two events happening in two different locations that occur simultaneously in the reference frame of one <i class="highlight">inertial observer</i>, may occur non-simultaneously in the reference frame of another <i class="highlight">inertial observer</i>'
     ]
-    score: '98.9'
+    score: {
+      relevant: '14'
+      'new': '128'
+      'percent': '60'
+    }
   },
   {
     id: 2143412
@@ -123,7 +139,11 @@ webResult =
       'The principle of relativity, which states that there is no preferred inertial reference frame, dates back to Galileo, and was incorporated into <i class="highlight">Newtonian physics</i>',
       'Two events happening in two different locations that occur simultaneously in the reference frame of one inertial observer, may occur non-simultaneously in the reference frame of another inertial observer'
     ]
-    score: '98.9'
+    score: {
+      relevant: '14'
+      'new': '128'
+      'percent': '60'
+    }
   },
   {
     id: 2143450
@@ -138,7 +158,11 @@ webResult =
       'The principle of relativity, which states that there is no preferred inertial reference frame, dates back to Galileo, and was incorporated into <i class="highlight">Newtonian physics</i>',
       'Two events happening in two different locations that occur simultaneously in the reference frame of one <i class="highlight">inertial observer</i>, may occur non-simultaneously in the reference frame of another <i class="highlight">inertial observer</i>'
     ]
-    score: '98.9'
+    score: {
+      relevant: '14'
+      'new': '128'
+      'percent': '60'
+    }
   },
   {
     id: 2143457
@@ -153,7 +177,11 @@ webResult =
       'The principle of relativity, which states that there is no preferred inertial reference frame, dates back to Galileo, and was incorporated into <i class="highlight">Newtonian physics</i>',
       'Two events happening in two different locations that occur simultaneously in the reference frame of one inertial observer, may occur non-simultaneously in the reference frame of another inertial observer'
     ]
-    score: '98.9'
+    score: {
+      relevant: '14'
+      'new': '128'
+      'percent': '60'
+    }
   },
   {
     id: 2143458
@@ -168,7 +196,11 @@ webResult =
       'The principle of relativity, which states that there is no preferred inertial reference frame, dates back to Galileo, and was incorporated into Newtonian physics',
       'Two events happening in two different locations that occur simultaneously in the reference frame of one <i class="highlight">inertial observer</i>, may occur non-simultaneously in the reference frame of another <i class="highlight">inertial observer</i>'
     ]
-    score: '98.9'
+    score: {
+      relevant: '14'
+      'new': '128'
+      'percent': '60'
+    }
   },
   {
     id: 2143464
@@ -183,7 +215,11 @@ webResult =
       'The principle of relativity, which states that there is no preferred inertial reference frame, dates back to Galileo, and was incorporated into Newtonian physics',
       'Two events happening in two different locations that occur simultaneously in the reference frame of one inertial observer, may occur non-simultaneously in the reference frame of another inertial observer'
     ]
-    score: '98.9'
+    score: {
+      relevant: '14'
+      'new': '128'
+      'percent': '60'
+    }
   }]
 
 exports.getWebEntry = (req, res) ->
