@@ -5,12 +5,14 @@ define [
   'views/search/options-view'
   'views/search/context/summary-view'
   'views/search/result/keywords/page-view'
+  'views/search/trail-view'
 ], ($,
     Controller,
     SearchResultPageView,
     SearchOptionsView,
     SearchContextSummaryView,
-    SearchResultKeywordsPageView) ->
+    SearchResultKeywordsPageView,
+    SearchTrailView) ->
 
   'use strict'
 
@@ -60,3 +62,11 @@ define [
           stageId: params.stageId
           category: params.cat
           query: params.query
+          state: params.state
+
+        if(params.state == 'trail')
+          @publishEvent 'searchResultPage:changeState', {'state': 'search-trail-view'}, (success) =>
+            @compose 'sr-search-trail', SearchTrailView,
+              region: 'searchTrail'
+              searchContextId: params.searchContextId
+              stageId: params.stageId

@@ -18,12 +18,13 @@ define [
     initialize: ->
       @baseUrl = config.api.versionRoot
       @collection = new SearchResults null, model: SearchResultEntry
+      # Call super after instantiating collection because parent super
+      # assign listeners to collection
+      super
       @collection.url = @baseUrl + "/search/web?" +
                         "q=#{@options.query}" +
                         "&ctxtid=#{@options.searchContextId}" +
                         "&stageId=#{@options.stageId}"
-
-      # Call super after instantiating collection because parent super
-      # assign listeners to collection
-      super
+      if(@options.state == 'trail')
+        @collection.url = @collection.url + "&type=trail"
       @collection.fetch()

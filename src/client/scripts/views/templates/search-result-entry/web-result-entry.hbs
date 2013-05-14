@@ -1,6 +1,9 @@
 <div class='vertical-line'></div>
 <div class='search-result-desc ten columns'>
   <h5 class='subheader'>{{title}}</h5>
+  {{#if bookmarked}}
+  <h6 class='label subheader bookmarked'>bookmarked</h6>
+  {{/if}}
   <h6 class='subheader'><i>source:&nbsp;{{source.link}}</i></h6>
   <div class='snippet-container'>
     <div class='snippet'>
@@ -16,4 +19,3 @@
     <li class='result-bookmark'>bookmark</li>
   </ul>
 </div>
-

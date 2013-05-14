@@ -41,8 +41,9 @@ define [
         category: params.cat
         query: params.query
         filterKeyword: params.filterKeyword if params.filterKeyword?
+        state: params.state
 
-      if(params.showDetail == true)
+      if(params.state == 'detail')
         if !options.model?
           model = new WebResultEntry
           model.set('id', params.id)
@@ -69,6 +70,6 @@ define [
             query: params.query
             autoRender: true
             model: options.model
-      else
+      else if(params.state == 'result')
         @publishEvent 'searchResultPage:changeState', {'state': 'search-result-view'}, (success) =>
           console.log("changed state now add data")

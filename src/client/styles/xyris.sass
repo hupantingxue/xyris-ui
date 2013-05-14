@@ -417,9 +417,15 @@ textarea.search-query
       margin: 0
       font-weight: 500
       line-height: 1.1em
+      display: inline-block
     h6
       margin-top: 0px
       margin-bottom: 0.618em
+    h6.bookmarked
+      margin-left: 10px
+      font-weight: 400
+      font-style: italic
+      display: inline-block
     .snippet-container
       height: 55px
     .orbit-wrapper
@@ -682,3 +688,40 @@ textarea.search-query
       background-color: $cs-orange
       height: 1em
       float: right
+
+.search-trail
+  ul.controls
+    margin: 0px
+    padding: 0px
+    text-align: center
+  .control
+    background-color: $cs-light-grey
+    line-height: 1.3em
+    margin-right: 2px
+    font-size: 23px
+    a
+      padding: 0.2em 1.3em
+      color: $cs-dark-grey
+      cursor: pointer
+    &:hover
+      background-color: $cs-dark-grey
+      a
+        color: white
+  .trail
+    list-style: none
+    & > li
+      margin-bottom: 10px
+      margin-right: 7px
+    .keywords
+      list-style: none
+      text-align: right
+      padding-right: 4px
+      margin: 0px
+      border-right: 1px solid $cs-med-grey
+      cursor: pointer
+      &.active
+        border-right: 3px solid $cs-dark-grey
+      .keyword
+        font-size: 13px
+        font-family: $content-font
+        color: $cs-dark-grey

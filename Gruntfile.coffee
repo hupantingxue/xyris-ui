@@ -84,7 +84,7 @@ module.exports = (grunt) ->
       install:
         options:
           targetDir: 'build/client/scripts/vendor'
-          cleanup: true
+          cleanup: false
     bower_require:
       all:
         rjsConfig: 'build/client/scripts/initialize.js'

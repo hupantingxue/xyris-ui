@@ -41,6 +41,16 @@ define [
     statesDef:
       'search-result-view': 'searchResultViewAction'
       'search-result-detail-view': 'searchResultDetailViewAction'
+      'search-trail-view': 'searchTrailViewAction'
+
+    searchTrailViewAction: (oldState) =>
+      region = (name) => @$(@invertedRegions[name])
+      region('searchResultOptions').hide()
+      region('searchOptions').show()
+      region('searchResultContainer').addClass('seven').removeClass('four').removeClass('sidelined')
+      region('searchResultDetail').hide()
+      region('contextKeywords').hide()
+      region('searchTrail').show()
 
     searchResultViewAction: (oldState) =>
       region = (name) => @$(@invertedRegions[name])
@@ -49,6 +59,7 @@ define [
       region('searchResultContainer').addClass('seven').removeClass('four').removeClass('sidelined')
       region('searchResultDetail').hide()
       region('contextKeywords').hide()
+      region('searchTrail').hide()
 
     searchResultDetailViewAction: (oldState) =>
       region = (name) => @$(@invertedRegions[name])
@@ -57,6 +68,7 @@ define [
       region('searchResultContainer').removeClass('seven').addClass('four sidelined')
       region('searchResultDetail').show()
       region('contextKeywords').hide()
+      region('searchTrail').hide()
 
     # Regions identified by SearchResultController and used
     # to assign different views to it
@@ -67,8 +79,9 @@ define [
       '#search-result-container': 'searchResultContainer'
       '#searchContextSummary': 'searchContextSummary'
       '#search-results': 'searchResults'
-      '#contextKeywords': 'contextKeywords'
+      '#context-keywords': 'contextKeywords'
       '#searchResultDetail': 'searchResultDetail'
+      '#search-trail': 'searchTrail'
 
     initialize: ->
       super

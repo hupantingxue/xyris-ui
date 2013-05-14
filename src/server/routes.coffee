@@ -6,6 +6,7 @@ module.exports = (app) ->
   app.get '/v1/search/web', controllers.getWeb
   app.get '/', controllers.getHome
   app.get '/search/*', controllers.getHome
+  app.get '/searchtrail/*', controllers.getHome
   app.get '/v1/get/keyword', controllers.getKeyword
 
   # Search SearchContext Related apis
@@ -19,3 +20,5 @@ module.exports = (app) ->
 
   app.get '/v1/getWebEntry', controllers.getWebEntry
   app.get '/v1/discover', controllers.discoverMore
+
+  app.get '/v1/getSearchTrail', controllers.getSearchTrail

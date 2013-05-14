@@ -18,7 +18,8 @@ define [
 
     initialize: ->
       super
-      # FilterKeywords are to be retrieved and stored in
+      console.log(@)
+      # FilterKeywords are to be retrieved and stored
       # SearchContext Object will be retrieved using publishEvent
       @publishEvent 'searchContext:getCurrentSearchContext',
         @options.searchContextId,
@@ -41,10 +42,17 @@ define [
 
     attach: ->
       super
+      @$('.sc-summ-action').removeClass('active')
+      @$('#summ-show-' + @options.state).addClass('active')
       @delegate 'click', '.sc-summary-icon', (event) =>
         @publishEvent '!router:route', ""
 
       @delegate 'click', '#summ-show-result', (event) =>
         @publishEvent '!router:route', "search/#{@options.category}/" +
+          "#{@options.searchContextId}/" +
+          "#{@options.stageId}/#{@options.query}"
+
+      @delegate 'click', '#summ-show-trail', (event) =>
+        @publishEvent '!router:route', "searchtrail/#{@options.category}/" +
           "#{@options.searchContextId}/" +
           "#{@options.stageId}/#{@options.query}"

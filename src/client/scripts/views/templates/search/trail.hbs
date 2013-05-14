@@ -1,0 +1,19 @@
+<ul class='controls'>
+    <li class='control prev entypo-icon'><a>&#59237;</a></li>
+    <li class='control all entypo-icon'><a>&#128191;</a></li>
+    <li class='control next entypo-icon'><a>&#59238;</a></li>
+</ul>
+<ul class='trail'>
+{{#each trail}}
+    <li stage='{{@key}}'>{{#with this}}
+        <ul class='keywords'>
+            {{#each keywords}}
+            <li class='keyword'>
+                {{this}}
+            </li>
+            {{/each}}
+        </ul>
+        {{/with}}
+    </li>
+{{/each}}
+</ul>
