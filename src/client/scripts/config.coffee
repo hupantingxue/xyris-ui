@@ -11,7 +11,8 @@ define () ->
   else
     'http://localhost:8888'
 
-  config.api.versionRoot = config.api.root + '/v1'
+  config.api.baseUrl = config.api.root + '/api'
+
   config.search.options = [
     {
       name: 'web'

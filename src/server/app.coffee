@@ -8,7 +8,7 @@ http = require 'http'
 app.settings.env = 'development'
 
 app.configure ->
-  app.set 'port', 80
+  app.set 'port', process.env.PORT || 8888
   app.set 'views', './build/server/views'
   app.set 'view engine', 'jade'
 

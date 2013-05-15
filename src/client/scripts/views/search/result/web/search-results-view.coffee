@@ -16,15 +16,21 @@ define [
     searchCat: 'web'
 
     initialize: ->
-      @baseUrl = config.api.versionRoot
+      @baseUrl = config.api.baseUrl
       @collection = new SearchResults null, model: SearchResultEntry
       # Call super after instantiating collection because parent super
       # assign listeners to collection
       super
-      @collection.url = @baseUrl + "/search/web?" +
-                        "q=#{@options.query}" +
-                        "&ctxtid=#{@options.searchContextId}" +
-                        "&stageId=#{@options.stageId}"
+      @collection.url = @baseUrl + "/search/web" +
+                        "/#{@options.searchContextId}" +
+                        "/#{@options.stageId}" +
+                        "/#{@options.query}"
+
       if(@options.state == 'trail')
-        @collection.url = @collection.url + "&type=trail"
+        @collection.url = @baseUrl +
+                          "/searchtrail" +
+                          "/results/web" +
+                          "/#{@options.searchContextId}" +
+                          "/#{@options.stageId}"
+
       @collection.fetch()

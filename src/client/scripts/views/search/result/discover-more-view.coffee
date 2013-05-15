@@ -19,12 +19,11 @@ define [
     initialize: ->
       @model = new Model
       super
-      @model.url = config.api.versionRoot +
-                  "/discover?" +
-                  "ctxtid=#{@options.searchContextId}" +
-                  "&stageId=#{@options.stageId}" +
-                  "&cat=#{@options.cat}" +
-                  "&entryId=#{@options.entryId}"
+      @model.url = config.api.baseUrl +
+                  "/discover/get/keywords" +
+                  "/#{@options.category}" +
+                  "/#{@options.entryId}"
+
       @listenTo @model, 'change', =>
         @render()
       @model.fetch()

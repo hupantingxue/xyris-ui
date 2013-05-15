@@ -29,7 +29,7 @@ define [
 
     initialize: ->
       super
-      @url = config.api.versionRoot
+      @url = config.api.baseUrl
       @collection = new Keywords null, model: Keyword
 
     initiateKeywordUpdate: (attributes) ->
@@ -51,18 +51,15 @@ define [
 
     updateKeywords: (query, keyid) ->
       url =
-        @url +
-        "/searchctxt/get/keyword?" +
-        "scid=#{@searchContextId}" +
-        "&stgid=#{@stageId}"
+        @url + "/searchctxt/suggest/ctxtkeywords"
 
       if query?
         return () =>
-          @collection.url = url + "&query=#{query}"
+          @collection.url = url + "/#{query}"
           @collection.fetch()
       else if keyid?
         return () =>
-          @collection.url = url + "&keyid=#{keyid}"
+          @collection.url = url + "/#{keyid}"
           @collection.fetch()
 
     renderSubviews: ->

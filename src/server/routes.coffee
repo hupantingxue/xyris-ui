@@ -1,24 +1,32 @@
 module.exports = (app) ->
-  controllers = require './controllers/controllers'
 
-  # Home page
-  app.get '/v1/search/books', controllers.getBooks
-  app.get '/v1/search/web', controllers.getWeb
-  app.get '/', controllers.getHome
-  app.get '/search/*', controllers.getHome
-  app.get '/searchtrail/*', controllers.getHome
-  app.get '/v1/get/keyword', controllers.getKeyword
+  # default and login page handlers
+  home = require './controllers/home'
+  app.get '/', home.index
+  app.get '/search/*', home.index
+  app.get '/searchtrail/*', home.index
 
-  # Search SearchContext Related apis
-  app.get '/v1/searchctxt/init', controllers.initSearchContext
-  app.get '/v1/searchctxt/getinfo', controllers.getSearchContextInfo
-  app.get '/v1/searchctxt/get/keyword', controllers.getKeyword
-  app.get '/v1/searchctxt/addKeyword', controllers.addContextKeyword
+  # search query handlers
+  search = require './controllers/search'
+  app.get '/api/search/:category/:searchCtxtId/:stageId/:query', search.get
 
-  app.get '/v1/suggest/query/:query', controllers.getSuggestedQueries
-  app.get '/v1/typeahead/suggest', controllers.getTypeaheadSuggestion
+  # search context query handlers
+  searchContext = require './controllers/search-context'
+  app.get '/api/searchctxt/new', searchContext.new
+  app.get '/api/searchctxt/summary/:searchCtxtId/:stageId', searchContext.summary
+  app.get '/api/searchctxt/add/ctxtkeyword/:searchCtxtId/:stageId/:keyword/:keyid', searchContext.addCtxtKeyword
+  app.get '/api/searchctxt/suggest/ctxtkeywords/:query', searchContext.suggestCtxtKeywords
+  app.get '/api/searchctxt/suggest/query/:query', searchContext.suggestQuery
 
-  app.get '/v1/getWebEntry', controllers.getWebEntry
-  app.get '/v1/discover', controllers.discoverMore
+  # search trail query handlers
+  searchTrail = require './controllers/search-trail'
+  app.get '/api/searchtrail/for/searchctxt/:searchCtxtId', searchTrail.forSearchContext
+  app.get '/api/searchTrail/for/user/:userId', searchTrail.forUser
+  app.get '/api/searchtrail/results/:category/:searchCtxtId/:stageId', searchTrail.results
 
-  app.get '/v1/getSearchTrail', controllers.getSearchTrail
+  # discover query handlers
+  discover = require './controllers/discover'
+  app.get '/api/discover/get/keywords/:category/:itemId', discover.getKeywords
+
+  item = require './controllers/item'
+  app.get '/api/item/get/detail/:category/:id', item.getDetail

@@ -48,7 +48,9 @@ define [
           model = new WebResultEntry
           model.set('id', params.id)
           options['model'] = model
-          options.model.url = config.api.versionRoot + "/getWebEntry?id=#{params.id}"
+          options.model.url = config.api.baseUrl +
+            "/item/get/detail/web/#{params.id}"
+
           options.model.fetch()
 
         @publishEvent 'searchResultPage:changeState', {'state': 'search-result-detail-view'}, (success) =>

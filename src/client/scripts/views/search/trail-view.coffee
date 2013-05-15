@@ -23,7 +23,7 @@ define [
       @listenTo @model, 'change', =>
         @render()
 
-      @model.url = config.api.versionRoot + "/getSearchTrail?sctxt=#{@options.searchContextId}"
+      @model.url = config.api.baseUrl + "/searchtrail/for/searchctxt/#{@options.searchContextId}"
       @model.fetch()
 
     attach: ->

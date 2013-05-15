@@ -8,7 +8,7 @@ define [
 
     _(@prototype).extend Chaplin.SyncMachine
 
-    apiRoot: config.api.versionRoot
+    apiRoot: config.api.baseUrl
     urlKey: 'id'
     urlPath: ->
       ''

@@ -24,7 +24,7 @@ define [
   class SearchContextController extends Controller
     initialize: ->
       super
-      @url = config.api.versionRoot
+      @url = config.api.baseUrl
       @subscribeEvent 'matchRoute', (route, params, options) =>
         @model = new SearchContext if ! @model?
 
@@ -50,7 +50,7 @@ define [
           # to be fetched to initiate
           # the searchContext info is stored in a new stage which becomes
           # active as soon as user searches
-          @model.url = @url + '/searchctxt/init'
+          @model.url = @url + '/searchctxt/new'
 
           @model.on 'change:newSearchContext', (thisModel, newSearchContext) =>
             @compose 'sc-search-context-page', SearchContextPageView,

@@ -42,7 +42,8 @@ define [
     initiateTypeaheadSuggestion: () =>
       if @query != ""
         query = encodeURIComponent(@query)
-        @typeahead_model.url = config.api.versionRoot + "/typeahead/suggest?query=#{query}"
+        @typeahead_model.url = config.api.baseUrl +
+          "/searchctxt/suggest/query/#{query}"
         @typeahead_model.fetch()
 
     showTypeaheadSuggestion: (query) ->

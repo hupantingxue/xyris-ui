@@ -16,12 +16,12 @@ define [
     searchCat: 'docs'
 
     initialize: ->
-      @baseUrl = config.api.versionRoot
+      @baseUrl = config.api.baseUrl
       @collection = new SearchResults null, model: SearchResultEntry
-      @collection.url = @baseUrl + "/search/web?" +
-                        "q=#{@options.query}" +
-                        "&ctxtid=#{@options.searchContextId}" +
-                        "&stageId=#{@options.stageId}"
+      @collection.url = @baseUrl + "/search/docs" +
+                        "/#{@options.searchContextId}" +
+                        "/#{@options.stageId}" +
+                        "/#{@options.query}"
 
       # Call super after instantiating collection because parent super
       # assign listeners to collection

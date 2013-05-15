@@ -5,4 +5,3 @@ define [
 
   class DummyController extends Controller
     do_nothing: ->
-      console.log('as')

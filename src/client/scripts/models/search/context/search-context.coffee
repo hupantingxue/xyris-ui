@@ -24,7 +24,7 @@ define [
     _(@prototype).extend EventBroker
 
     initialize: ->
-      @baseUrl = config.api.versionRoot
+      @baseUrl = config.api.baseUrl
       @on 'change:newSearchContext', (thisModel, newSearchContext) =>
         @newSearchContext = newSearchContext
 
@@ -37,11 +37,12 @@ define [
             callback(false)
             return
         @newSearchContext.contextKeywords.push(attributes)
-        @url = @baseUrl + '/searchctxt/addKeyword?' +
-               "searchContextId=#{@newSearchContext.searchContextId}" +
-               "&stageId=#{@newSearchContext.stageId}" +
-               "&keyword=#{attributes.keyword}" +
-               "&keyid=#{attributes.keyid}"
+        @url = @baseUrl + '/searchctxt/add/ctxtkeyword' +
+          "/#{@newSearchContext.searchContextId}" +
+          "/#{@newSearchContext.stageId}" +
+          "/#{attributes.keyword}" +
+          "/#{attributes.keyid}"
+
         @fetch(
           success: (thisModel, response, options) =>
             @publishEvent 'searchContext:contextKeywordPersisted', attributes.keyid
@@ -52,10 +53,9 @@ define [
         if @currentSearchContext?
           callback @currentSearchContext
         else
-          @url = @baseUrl + '/searchctxt/getinfo?' +
-                 "searchContextId=#{searchContextId}" +
-                 "&stageId=#{stageId}" +
-                 "&query=#{query}"
+          @url = @baseUrl + '/searchctxt/summary' +
+            "/#{searchContextId}" +
+            "/#{stageId}"
 
           @fetch(
             success: (thisModel, response, options) =>
