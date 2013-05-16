@@ -1,9 +1,13 @@
 express = require 'express'
-app = express()
 fs = require 'fs'
 cake = './node_modules/coffee-script/bin/cake'
 exec = require('child_process').exec
 http = require 'http'
+RedisStore = require('connect-redis')(express)
+config = require './config'
+
+app = express()
+
 
 app.settings.env = 'development'
 
@@ -17,6 +21,15 @@ app.configure ->
   app.use express.methodOverride()
   app.use app.router
   app.use express.static('./build/client')
+
+  app.use express.cookieParser()
+  app.use express.session(
+    store: new RedisStore(
+      host: config.redis_host
+      port: config.redis_port
+    )
+  )
+  # app.use everyauth.middleware()
 
 app.configure 'development', ->
   app.locals.title = 'Xyris UI'

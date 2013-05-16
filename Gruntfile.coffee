@@ -16,6 +16,14 @@ module.exports = (grunt) ->
           dest: 'build/'
           ext: '.js'
         ]
+      compile_server:
+        files: [
+          expand: true
+          cwd: 'src/server/'
+          src: ['**/*.coffee']
+          dest: 'build/server/'
+          ext: '.js'
+        ]
     compass:
       compile:
         options:

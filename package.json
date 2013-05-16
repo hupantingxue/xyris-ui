@@ -10,8 +10,10 @@
     "coffee-script": "1.4.0",
     "hiredis": "~0.1.15",
     "redis": "~0.8.3",
-    "passport": "~0.1.17",
-    "passport-local": "~0.1.6"
+    "node-uuid": "~1.4.0",
+    "connect-redis": "~1.4.5",
+    "generic-pool": "~2.0.3",
+    "winston": "~0.7.1"
   },
   "devDependencies": {
     "grunt": "~0.4.0",

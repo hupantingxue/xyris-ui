@@ -1,29 +1,54 @@
+logger = require '../lib/logger'
+
+SearchContext = require '../models/search-context'
+searchContext = new SearchContext
+
 exports.new = (req, res) ->
-  res.send({
-    newSearchContext:
-      searchContextId: '1330990ASD89ASD' + Math.floor(Math.random() * 100 + 1)
-      stageId: '1'
-      query: ''
-      contextKeywords: []
-  })
+  searchContext.new(
+    "0",
+    (searchContextId, err) ->
+      if (err)
+        logger.log('error', err)
+      else
+        res.send(
+          newSearchContext:
+            searchContextId: searchContextId
+            stageId: '1'
+            query: ''
+            contextKeywords: []
+        )
+  )
 
 exports.summary = (req, res) ->
-  res.send({
-    currentSearchContext:
-      searchContextId: req.params.searchCtxtId
-      stageId: req.params.stageId
-      contextKeywords: [
-        'Albert Einstein',
-        'Theory of Relativity'
-      ]
-      category: 'web'
-      query: 'Albert Einstein work on Theory of Relativity'
-  })
+  sCtxtId = req.params.searchCtxtId
+  stageId = req.params.stageId
+
+  searchContext.detail(
+    "0",
+    sCtxtId,
+    stageId,
+    (sCtxt, err) ->
+      if(err)
+        logger.log('error', err)
+      else res.send currentSearchContext: sCtxt
+  )
 
 exports.addCtxtKeyword = (req, res) ->
-  res.send({
-    persisted: true
-  })
+  sCtxtId = req.params.searchCtxtId
+  stageId = req.params.stageId
+  keyword = req.params.keyid + ':' + req.params.keyword
+
+  searchContext.addCtxtKeyword(
+    "0",
+    sCtxtId,
+    stageId,
+    keyword,
+    (result, err) ->
+      if(err)
+        logger.log('error', err)
+        res.send persisted: false
+      else res.send persisted: true
+  )
 
 exports.suggestCtxtKeywords = (req, res) ->
   res.send([{

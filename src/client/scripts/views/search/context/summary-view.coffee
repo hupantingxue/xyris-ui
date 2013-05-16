@@ -31,11 +31,13 @@ define [
           # validate currentSearchContext.query info with that passed in options
           # and redirect if different
 
-          for keyword in currentSearchContext.contextKeywords
-            contextKeywords.push keyword
+          if 'contextKeywords' of currentSearchContext
+            for id, keyword of currentSearchContext.contextKeywords
+              contextKeywords.push keyword
 
+          query = currentSearchContext && @options.query
           @model = new Model
-            query: $.trim(decodeURIComponent(@options.query))
+            query: $.trim(decodeURIComponent(query))
             contextKeywords: contextKeywords
 
           @render()
