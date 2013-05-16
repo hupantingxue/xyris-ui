@@ -13,6 +13,7 @@ module.exports = (app) ->
   # search context query handlers
   searchContext = require './controllers/search-context'
   app.get '/api/searchctxt/new', searchContext.new
+  app.get '/api/searchctxt/sync/:searchCtxtId/:stageId/:query', searchContext.sync
   app.get '/api/searchctxt/summary/:searchCtxtId/:stageId', searchContext.summary
   app.get '/api/searchctxt/add/ctxtkeyword/:searchCtxtId/:stageId/:keyword/:keyid', searchContext.addCtxtKeyword
   app.get '/api/searchctxt/suggest/ctxtkeywords/:query', searchContext.suggestCtxtKeywords

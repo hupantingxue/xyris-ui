@@ -4,11 +4,13 @@ define [
   'routes'
   'controllers/base-layout-controller'
   'controllers/search-context-controller'
+  'models/search/context/search-context'
 ], (Chaplin,
     Layout,
     routes,
     BaseLayoutController,
-    SearchContextController) ->
+    SearchContextController,
+    SearchContext) ->
   'use strict'
 
   class XyrisApplication extends Chaplin.Application
@@ -57,6 +59,7 @@ define [
       # or navigation views.
       new BaseLayoutController
       new SearchContextController
+        model: new SearchContext
 
     # Create additional mediator properties
     # -------------------------------------

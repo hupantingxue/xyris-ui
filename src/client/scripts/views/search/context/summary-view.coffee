@@ -18,24 +18,17 @@ define [
 
     initialize: ->
       super
-      console.log(@)
-      # FilterKeywords are to be retrieved and stored
-      # SearchContext Object will be retrieved using publishEvent
-      @publishEvent 'searchContext:getCurrentSearchContext',
+
+      @publishEvent 'searchCtxt:sync',
         @options.searchContextId,
         @options.stageId,
         @options.query,
-        (currentSearchContext) =>
-
+        (searchContext) =>
           contextKeywords = []
-          # validate currentSearchContext.query info with that passed in options
-          # and redirect if different
+          for id, keyword of searchContext.contextKeywords
+            contextKeywords.push keyword
 
-          if 'contextKeywords' of currentSearchContext
-            for id, keyword of currentSearchContext.contextKeywords
-              contextKeywords.push keyword
-
-          query = currentSearchContext && @options.query
+          query = searchContext.query
           @model = new Model
             query: $.trim(decodeURIComponent(query))
             contextKeywords: contextKeywords

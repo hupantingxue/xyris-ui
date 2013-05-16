@@ -5,9 +5,9 @@ define [
 
   class SearchContextKeywordsPageView extends ContextKeywordsPageView
     initialize: ->
-      @searchContextId = @options.newSearchContext.searchContextId
-      @stageId = @options.newSearchContext.stageId
       super
+      @searchContextId = @options.searchContext.searchContextId
+      @stageId = @options.searchContext.stageId
 
     attach: ->
       super

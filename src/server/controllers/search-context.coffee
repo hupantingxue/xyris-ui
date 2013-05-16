@@ -11,13 +11,28 @@ exports.new = (req, res) ->
         logger.log('error', err)
       else
         res.send(
-          newSearchContext:
-            searchContextId: searchContextId
-            stageId: '1'
-            query: ''
-            contextKeywords: []
+          'searchContextId': searchContextId
+          'stageId': '1'
+          'query': ''
+          'contextKeywords': []
         )
   )
+
+exports.sync = (req, res) ->
+  sCtxtId = req.params.searchCtxtId
+  stageId = req.params.stageId
+  query = req.params.query
+
+  searchContext.sync(
+    "0",
+    sCtxtId,
+    stageId,
+    query,
+    (sCtxt, err) ->
+      if(err)
+        logger.log('error', err)
+      else res.send sCtxt
+    )
 
 exports.summary = (req, res) ->
   sCtxtId = req.params.searchCtxtId
@@ -30,7 +45,7 @@ exports.summary = (req, res) ->
     (sCtxt, err) ->
       if(err)
         logger.log('error', err)
-      else res.send currentSearchContext: sCtxt
+      else res.send sCtxt
   )
 
 exports.addCtxtKeyword = (req, res) ->

@@ -27,8 +27,8 @@ define [
 
     initialize: ->
       super
-      @searchContextId = @options.newSearchContext.searchContextId
-      @stageId = @options.newSearchContext.stageId
+      @searchContextId = @options.searchContext.searchContextId
+      @stageId = @options.searchContext.stageId
 
     attach: ->
       super
@@ -44,20 +44,20 @@ define [
           @$("#search-context-keywords").removeClass('search-context-keywords')
 
       @subscribeEvent 'ctxtkeyword:selected', (attributes) =>
-        @publishEvent 'searchContext:persistContextKeyword', attributes, (success) =>
-          if !success
-            return
-          html = [
-            "<a class='sc-sum-keywords not-persisted' id='keyword-",
-            attributes.keyid,
-            "'>",
-            attributes.keyword,
-            "</a>"
-          ].join('')
-          @$el.find('#search-context-keywords').append(html)
+        html = [
+          "<a class='sc-sum-keywords not-persisted' id='keyword-",
+          attributes.keyid,
+          "'>",
+          attributes.keyword,
+          "</a>"
+        ].join('')
+        @$el.find('#search-context-keywords').append(html)
 
-      @subscribeEvent 'searchContext:contextKeywordPersisted', (keyid) =>
-        @$el.find('#keyword-' + keyid).removeClass('not-persisted')
+        @publishEvent 'searchCtxt:persistCtxtKeyword', attributes, (success) =>
+          if success
+            @$el.find('#keyword-' + attributes.keyid).removeClass('not-persisted')
+          else
+            @$el.find('#keyword-' + attributes.keyid).remove()
 
       @subscribeEvent 'searchctxt:queryEntered', (attributes) =>
         if attributes.query == ""

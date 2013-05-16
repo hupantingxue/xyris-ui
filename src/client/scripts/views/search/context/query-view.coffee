@@ -33,8 +33,8 @@ define [
       @typeahead_model = new Model
       @listenTo @typeahead_model, 'change', @showTypeaheadSuggestion
 
-      @searchContextId = @options.newSearchContext.searchContextId
-      @stageId = @options.newSearchContext.stageId
+      @searchContextId = @options.searchContext.searchContextId
+      @stageId = @options.searchContext.stageId
 
     highlightTextBox: ->
       @$el.effect('highlight', {easing: 'easeOutCubic'})

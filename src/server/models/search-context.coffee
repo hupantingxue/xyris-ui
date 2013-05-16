@@ -32,9 +32,40 @@ class SearchContext extends RedisModel
           done()
           result(searchContextId, null)
 
+  sync: (userId, sCtxtId, stageId, query, result) ->
+    @execCmd (client, done) =>
+      client.hgetall(
+        @stageKey(userId, sCtxtId, stageId),
+        (err, res) =>
+          if (err)
+            result(null, err)
+          else
+            ret = () =>
+              done()
+              searchContext =
+                'searchContextId': sCtxtId
+                'stageId': stageId
+                'query': query
+                'contextKeywords':
+                  @parseCtxtKeywords(res.contextKeywords) if 'contextKeywords' of res
+              result(searchContext, null)
+
+            if (/^\s*$/).test(res.query) && query isnt 'null'
+              client.hset(
+                @stageKey(userId, sCtxtId, stageId),
+                "query",
+                query,
+                (err, res) =>
+                  ret()
+              )
+            else
+              query = res.query
+              ret()
+      )
+
   detail: (userId, sCtxtId, stageId, result) ->
     @execCmd (client, done) =>
-      query = client.hgetall(
+      client.hgetall(
         @stageKey(userId, sCtxtId, stageId),
         (err, res) =>
           if (err)
