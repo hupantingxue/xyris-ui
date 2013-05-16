@@ -30,15 +30,16 @@ define [
 
     attach: ->
       super
+      @selectedKeys = []
       @delegate 'click', '.explore', (event) =>
         event.stopPropagation()
         event.preventDefault()
-        @publishEvent 'searchContext:navigateToNext', @selectedKeys, @options.category
+        @publishEvent 'searchCtxt:navigateToNext', @options.query, @selectedKeys, @options.category
 
       @delegate 'click', '.discover-keys span', (event) =>
         event.stopPropagation()
         event.preventDefault()
-        keyid = @$(event.target).attr('id').substring(8)
+        keyid = @$(event.target).attr('id').substring(9)
         idx = @selectedKeys.indexOf(keyid)
         if idx != -1
           @$(event.target).html('&oplus;').removeClass('red')

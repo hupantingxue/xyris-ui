@@ -1,6 +1,5 @@
 RedisModel = require './model'
 uuid = require 'node-uuid'
-logger = require '../lib/logger'
 
 class SearchContext extends RedisModel
 
@@ -26,10 +25,10 @@ class SearchContext extends RedisModel
         .pexpire(sKey, @expireTime.guestUser)
 
       query.exec (err, res) ->
+        done()
         if(err)
           result(null, err)
         else
-          done()
           result(searchContextId, null)
 
   sync: (userId, sCtxtId, stageId, query, result) ->
@@ -38,6 +37,7 @@ class SearchContext extends RedisModel
         @stageKey(userId, sCtxtId, stageId),
         (err, res) =>
           if (err)
+            done()
             result(null, err)
           else
             ret = () =>
@@ -61,6 +61,28 @@ class SearchContext extends RedisModel
             else
               query = res.query
               ret()
+      )
+
+  advance: (userId, sCtxtId, query, keywordIds, result) ->
+    @execCmd (client, done) =>
+      client.get(
+        @cKey(userId, sCtxtId),
+        (err, res) =>
+          stageId = parseInt(res) + 1
+          multi = client.multi()
+          multi.incr @cKey(userId, sCtxtId)
+          multi.hmset [
+            @stageKey(userId, sCtxtId, stageId),
+            'query',
+            query,
+            'contextKeywords',
+            @makeCtxtKeywordStr(keywordIds)
+          ]
+          multi.exec (err, res) ->
+            done()
+            if (err)
+              result(null, err)
+            else result(stageId, null)
       )
 
   detail: (userId, sCtxtId, stageId, result) ->
@@ -122,5 +144,11 @@ class SearchContext extends RedisModel
       ctxtKeywords[kv[0]] = kv[1]
 
     return ctxtKeywords
+
+  makeCtxtKeywordStr: (keywords) ->
+    strings = []
+    for id, keyword of keywords
+      strings.push(id + ':' + keyword)
+    strings.join(',')
 
 module.exports = SearchContext

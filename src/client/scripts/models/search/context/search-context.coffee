@@ -16,22 +16,7 @@ define [
 
       @subscribeEvent 'searchCtxt:persistCtxtKeyword', @persistCtxtKeyword
       @subscribeEvent 'searchCtxt:sync', @syncSearchCtxt
-      @subscribeEvent 'searchContext:navigateToNext', @navigateToNext
-
-    syncSearchCtxt: (searchContextId, stageId, query, callback) ->
-      query = encodeURIComponent(query)
-      @url = @baseUrl + '/searchctxt/sync' +
-            "/#{searchContextId}" +
-            "/#{stageId}" +
-            "/#{query}"
-      @fetch
-        success: () =>
-          callback(@attributes) if callback
-
-    navigateToNext: (contextKeywords, cat) =>
-      @publishEvent '!router:route', "search/#{cat}/" +
-        "#{@currentSearchContext.searchContextId}/" +
-        "54657/#{@currentSearchContext.query}"
+      @subscribeEvent 'searchCtxt:navigateToNext', @navigateToNext
 
     persistCtxtKeyword: (attributes, callback) =>
       if attributes.keyid of @attributes.contextKeywords
@@ -49,6 +34,29 @@ define [
         success: (thisModel, response, options) =>
           callback response.persisted
       )
+
+    syncSearchCtxt: (searchContextId, stageId, query, callback) ->
+      query = encodeURIComponent(query)
+      @url = @baseUrl + '/searchctxt/sync' +
+            "/#{searchContextId}" +
+            "/#{stageId}" +
+            "/#{query}"
+      @fetch
+        success: () =>
+          callback(@attributes) if callback
+
+    navigateToNext: (query, contextKeywords, cat) ->
+      keywords = contextKeywords.join(':')
+      @url = @baseUrl + '/searchctxt/advance' +
+             "/#{@attributes.searchContextId}" +
+             "/#{query}" +
+             "/#{keywords}"
+      @fetch
+        success: (thisModel, response, options) =>
+          @publishEvent '!router:route', "search/#{cat}/" +
+            "#{@attributes.searchContextId}/" +
+            "#{response.stageId}/" +
+            "#{query}"
 
     new: (callback) ->
       @url = @baseUrl + '/searchctxt/new'

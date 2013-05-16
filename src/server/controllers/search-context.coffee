@@ -1,7 +1,10 @@
 logger = require '../lib/logger'
 
 SearchContext = require '../models/search-context'
+ContextKeywords = require '../models/context-keywords'
+
 searchContext = new SearchContext
+ctxtKeywords = new ContextKeywords
 
 exports.new = (req, res) ->
   searchContext.new(
@@ -33,6 +36,24 @@ exports.sync = (req, res) ->
         logger.log('error', err)
       else res.send sCtxt
     )
+
+exports.advance = (req, res) ->
+  sCtxtId = req.params.searchCtxtId
+  query = req.params.query
+  keywordIds = req.params.keywordIds.toString().split(':')
+
+  ctxtKeywords.mapIdsToName(keywordIds, (map, err) ->
+    searchContext.advance(
+      "0",
+      sCtxtId,
+      query,
+      map,
+      (stageId, err) ->
+        if(err)
+          logger.log('error', err)
+        else res.send 'stageId': stageId
+    )
+  )
 
 exports.summary = (req, res) ->
   sCtxtId = req.params.searchCtxtId
