@@ -3,6 +3,7 @@
 /vendor
 /dist
 
+*.log
 .sass-cache
 assets
 
