@@ -1,26 +1,17 @@
+logger = require '../lib/logger'
+SearchTrail = require '../models/search-trail'
+searchTrail = new SearchTrail
+
 exports.forSearchContext = (req, res) ->
-  res.send({
-    trail: {
-      1:
-        query: 'Albert Einstein'
-        keywords: ['Physics', 'Nobel Prize']
-      2:
-        query: 'Theory of Relativity'
-        keywords: ['Special Theory of Relativity', 'General Theory of Relativity', 'Minkowski metrics']
-      3:
-        query: 'Albert Einstein and relativity'
-        keywords: ['Special Theory of Relativity', 'General Theory of Relativity']
-      4:
-        query: 'Einsteins work other than relativity'
-        keywords: ['Brownian motion', 'photoelectric effect']
-      5:
-        query: 'Einsteins work other than relativity'
-        keywords: ['Quantum Physics', 'Bose-Einstein Statistics']
-      6:
-        query: 'Einsteins work other than relativity'
-        keywords: ['Einstein-Cartan Theory', 'Wave particle duality']
-    }
-  })
+  searchTrail.get(
+    '0',
+    req.params.searchCtxtId,
+    (trail, err)->
+      if(err)
+        logger.log('error', err)
+      else
+        res.send 'trail': trail
+  )
 
 exports.forUser = (req, res) ->
   res.send({msg: 'not implemented'})

@@ -4,7 +4,6 @@ class RedisModel
   client_pool: pool
 
   constructor: () ->
-    console.log("sdf")
 
   execCmd: (cmd) ->
     @client_pool.acquire((err, client) =>
@@ -15,5 +14,11 @@ class RedisModel
           @client_pool.release(client)
         )
     )
+
+  cKey: (userId, searchContextId) ->
+    userId + ':c:' + searchContextId
+
+  stageKey: (userId, searchContextId, stageId) ->
+    userId + ':s:' + searchContextId + ':' + stageId
 
 module.exports = RedisModel

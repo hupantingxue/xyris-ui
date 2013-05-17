@@ -130,12 +130,6 @@ class SearchContext extends RedisModel
             )
       )
 
-  cKey: (userId, searchContextId) ->
-    userId + ':c:' + searchContextId
-
-  stageKey: (userId, searchContextId, stageId) ->
-    userId + ':s:' + searchContextId + ':' + stageId
-
   parseCtxtKeywords: (keywords) ->
     ctxtKeywords = {}
 
