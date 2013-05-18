@@ -28,6 +28,7 @@ define [
       '#footer': 'footer'
       '#main': 'main'
       '#search-context': 'searchContext'
+      '#user-detail': 'userDetail'
 
     initialize: ->
       super

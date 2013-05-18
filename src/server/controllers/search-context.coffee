@@ -7,6 +7,8 @@ searchContext = new SearchContext
 ctxtKeywords = new ContextKeywords
 
 exports.new = (req, res) ->
+  logger.log('info', req.user)
+
   searchContext.new(
     "0",
     (searchContextId, err) ->

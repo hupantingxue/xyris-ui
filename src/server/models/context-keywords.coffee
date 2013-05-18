@@ -1,6 +1,6 @@
 RedisModel = require './model'
 
-class ContextKeywords extends RedisModel
+module.exports = class ContextKeywords extends RedisModel
   contructor: () ->
     super
 
@@ -56,5 +56,3 @@ dummyKeywords = [
     score: 5
   }
 ]
-
-module.exports = ContextKeywords

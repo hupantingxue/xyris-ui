@@ -4,12 +4,14 @@ define [
   'routes'
   'controllers/base-layout-controller'
   'controllers/search-context-controller'
+  'controllers/session-controller'
   'models/search/context/search-context'
 ], (Chaplin,
     Layout,
     routes,
     BaseLayoutController,
     SearchContextController,
+    SessionController,
     SearchContext) ->
   'use strict'
 
@@ -60,6 +62,7 @@ define [
       new BaseLayoutController
       new SearchContextController
         model: new SearchContext
+      new SessionController
 
     # Create additional mediator properties
     # -------------------------------------

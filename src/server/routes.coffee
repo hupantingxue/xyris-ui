@@ -1,4 +1,14 @@
-module.exports = (app) ->
+module.exports = (app, passport) ->
+
+
+  user = require './controllers/user'
+  # user query handlers
+  app.post '/api/user/session', passport.authenticate('local',
+    failureFlash: 'Invalid email or password'
+  ), user.login
+  app.get '/api/user/logout', user.logout
+  app.get '/api/user/me', user.me
+  app.get '/api/user/create', user.create
 
   # default and login page handlers
   home = require './controllers/home'
