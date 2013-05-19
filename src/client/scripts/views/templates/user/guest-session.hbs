@@ -1,1 +1,34 @@
-<span>Guest</span>
+<a class='login control'>Login</a>
+or
+<a class='signup control'>Sign up</a>
+
+<div class='overlay login' id='login'>
+    <div>
+        <span class='entypo-icon login close'>&#10060;</span>
+        <h5 class='subheader'>Log In</h5>
+        <hr/>
+        <input id='l-email' type='text' placeholder='email id'></input>
+        <input id='l-password' type='password' placeholder='password'></input>
+        <a class='login action'>Log In</a><br/>
+        <div class='extras'>
+            <input type='checkbox' class='remember'/>&nbsp;<span>Remember me on this computer</span>
+            <a class='forgot'>Forgot password ?</a>
+        </div>
+    </div>
+</div>
+
+<div class='overlay signup' id='signup'>
+    <div>
+        <span class='entypo-icon signup close'>&#10060;</span>
+        <h5 class='subheader'>Sign up</h5>
+        <hr/>
+        <input id='s-first-name' type='text' placeholder='first name'></input>
+        <input id='s-last-name' type='text' placeholder='last name'></input>
+        <input id='s-email' type='text' placeholder='email id'></input>
+        <div class='signup email error-msg'>invalid email</div>
+        <input id='s-password' type='password' placeholder='password'></input>
+        <input id='s-confirm' type='password' placeholder='confirm password'></input>
+        <div class='signup pwd error-msg'>passwords donot match</div>
+        <a class='signup action'>Sign Up</a><br/>
+    </div>
+</div>

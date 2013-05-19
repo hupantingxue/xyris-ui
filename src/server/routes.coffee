@@ -1,14 +1,27 @@
+logger = require './lib/logger'
+Sync =  require 'sync'
+
 module.exports = (app, passport) ->
 
+  loadUser = (req, res, next) ->
+    if 'user' of req
+      req.user.info( -> )
+      next()
+    else
+      req.user = id: '0'
+      next()
 
   user = require './controllers/user'
   # user query handlers
   app.post '/api/user/session', passport.authenticate('local',
     failureFlash: 'Invalid email or password'
   ), user.login
+
   app.get '/api/user/logout', user.logout
-  app.get '/api/user/me', user.me
-  app.get '/api/user/create', user.create
+  app.get '/api/user/me', loadUser, user.me
+  app.post '/api/user/create', user.create
+
+  app.all '*', loadUser
 
   # default and login page handlers
   home = require './controllers/home'

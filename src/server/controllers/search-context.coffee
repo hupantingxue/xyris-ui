@@ -7,10 +7,8 @@ searchContext = new SearchContext
 ctxtKeywords = new ContextKeywords
 
 exports.new = (req, res) ->
-  logger.log('info', req.user)
-
   searchContext.new(
-    "0",
+    req.user.id,
     (searchContextId, err) ->
       if (err)
         logger.log('error', err)
@@ -29,13 +27,15 @@ exports.sync = (req, res) ->
   query = req.params.query
 
   searchContext.sync(
-    "0",
+    req.user.id,
     sCtxtId,
     stageId,
     query,
     (sCtxt, err) ->
       if(err)
         logger.log('error', err)
+      if not sCtxt
+        res.redirect('/')
       else res.send sCtxt
     )
 
@@ -46,7 +46,7 @@ exports.advance = (req, res) ->
 
   ctxtKeywords.mapIdsToName(keywordIds, (map, err) ->
     searchContext.advance(
-      "0",
+      req.user.id,
       sCtxtId,
       query,
       map,
@@ -62,7 +62,7 @@ exports.summary = (req, res) ->
   stageId = req.params.stageId
 
   searchContext.detail(
-    "0",
+    req.user.id,
     sCtxtId,
     stageId,
     (sCtxt, err) ->
@@ -77,7 +77,7 @@ exports.addCtxtKeyword = (req, res) ->
   keyword = req.params.keyid + ':' + req.params.keyword
 
   searchContext.addCtxtKeyword(
-    "0",
+    req.user.id,
     sCtxtId,
     stageId,
     keyword,

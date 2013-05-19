@@ -4,7 +4,7 @@ searchTrail = new SearchTrail
 
 exports.forSearchContext = (req, res) ->
   searchTrail.get(
-    '0',
+    req.user.id,
     req.params.searchCtxtId,
     (trail, err)->
       if(err)

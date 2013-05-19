@@ -3,6 +3,8 @@ User = require './user'
 uuid = require 'node-uuid'
 bcrypt = require 'bcrypt'
 
+logger = require '../lib/logger'
+
 module.exports =
 class UserUtility extends RedisModel
 
@@ -18,7 +20,7 @@ class UserUtility extends RedisModel
             else
               result new User(res), err
         )
-    else if '_id' of options
+    else if '_id' of options and options.id isnt '0'
       @execCmd (client, done) =>
         client.exists(
           @userIdKey(options._id),
@@ -27,7 +29,9 @@ class UserUtility extends RedisModel
             if(err)
               result null, err
             else
-              result new User(options._id), null
+              user = new User(options._id)
+              user.info ()->
+                result user, null
         )
 
   create: (options, result) ->

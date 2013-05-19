@@ -17,6 +17,7 @@ define [
 
     attach: ->
       super
+      console.log('attach')
       @$('.summary').addClass('active')
 
       @delegate 'click', '.summary', (event) =>

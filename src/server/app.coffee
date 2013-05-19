@@ -17,9 +17,12 @@ passport.serializeUser((user, done) ->
 )
 
 passport.deserializeUser((id, done) ->
-  userUtility.find(_id: id, (user, err) ->
-    done(err, user)
-  )
+  if id isnt '0'
+    userUtility.find(_id: id, (user, err) ->
+      done(err, user)
+    )
+  else
+    done(err, id: '0')
 )
 
 passport.use(new LocalStrategy(
@@ -34,8 +37,7 @@ passport.use(new LocalStrategy(
         done(null, false, message: 'Unknown user')
       else user.authenticate(password, (auth) ->
         if auth
-          logger.log('info', auth)
-          return done(null, user)
+          return done(null, user, message: 'successfully logged')
         else
           done(null, false, message: 'Invalid password')
       )

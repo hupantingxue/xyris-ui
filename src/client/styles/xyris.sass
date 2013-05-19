@@ -725,3 +725,69 @@ textarea.search-query
         font-size: 13px
         font-family: $content-font
         color: $cs-dark-grey
+
+.user-detail
+  color: white
+  .control
+    color: white
+    cursor: pointer
+    line-height: 1.3em
+    font-weight: 400
+    font-size: 17px
+    line-height: 2.7em
+  .overlay
+    display: none
+    position: fixed
+    left: 0px
+    top: 0px
+    width: 100%
+    height: 100%
+    text-align: center
+    z-index: 1000
+    background-color: $cs-dark-grey
+    background-color: rgba(black, 0.8)
+  .overlay > div
+    color: $cs-dark-grey
+    width: 400px
+    margin: 100px auto
+    background-color: $cs-light-grey
+    border: 1px solid $cs-dark-grey
+    padding: 15px
+    text-align: center
+    span.close
+      cursor: pointer
+      float: right
+      font-size: 32px
+      line-height: 0.4em
+    h5
+      font-weight: 400
+    & > input
+      font-size: 23px
+      line-height: 1.3em
+      height: 1.8em
+      font-weight: 300
+      &.error
+        border: 1px solid red
+    .error-msg
+      display: none
+      color: red
+      text-align: left
+      margin-top: -11px 
+      margin-bottom: 14px
+    a.action
+      color: white
+      background-color: $cs-light-red
+      padding: 5px
+      font-size: 17px
+      cursor: pointer
+      display: block
+    div.extras
+      text-align: left
+      margin-top: 23px
+      .remember
+        cursor: pointer
+      a
+        margin-top: 13px
+        display: block
+        cursor: pointer
+        color: $cs-dark-grey

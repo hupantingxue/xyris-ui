@@ -4,7 +4,7 @@ define [
   'chaplin'
   'models/base/model'
   'controllers/base/controller'
-  'views/user-session-view'
+  'views/user/user-session-view'
 ], ($,
     config,
     Chaplin,
@@ -21,10 +21,10 @@ define [
       @user = new User
       @user.url = @baseUrl + '/user/me'
       console.log(@user)
-      @compose 'user-detail', UserSessionView,
-        region: 'userDetail'
+
+      @view = new UserSessionView
         model: @user
-        autoRender: false
+        container: $('#user-detail')
 
       @user.fetch()
       Chaplin.mediator.user = @user
@@ -35,18 +35,19 @@ define [
 
     create: (user, callback) ->
       $.post @baseUrl + '/user/create',
-        name: user.name
+        firstName: user.firstName
+        lastName: user.lastName
         email: user.email
         password: user.password
         (data) ->
           callback(data)
 
-    login: (email, password) ->
+    login: (email, password, callback) ->
       $.post @baseUrl + '/user/session',
         email: email
         password: password
         (data) ->
-          console.log(data)
+          callback(data)
 
     logout: () ->
       $.post @baseUrl + '/user/logout', (data) ->

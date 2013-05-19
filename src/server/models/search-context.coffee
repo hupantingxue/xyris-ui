@@ -38,7 +38,10 @@ class SearchContext extends RedisModel
         (err, res) =>
           if (err)
             done()
-            result(null, err)
+            result null, err
+          if not res
+            done()
+            result null, null
           else
             ret = () =>
               done()
