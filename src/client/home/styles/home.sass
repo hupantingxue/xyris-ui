@@ -1,0 +1,174 @@
+@import "normalize.scss"
+@import "foundation.scss"
+@import "entypo.scss"
+@import compass/support
+@import compass/css3
+
+/* color scheme from http://www.colourlovers.com/palette/148712/Gamebookers */
+$cs-orange: #FF9900
+$cs-dark-grey: #424242
+$cs-light-grey: #E9E9E9
+$cs-lighter-grey: #EAEAEA
+$cs-med-grey: #BCBCBC
+$cs-darker-blue: #1587B9
+$cs-blue: #3299BB
+$cs-dirty-blue: #329999
+$cs-very-light-blue: #D7EDF4
+$cs-light-red: #E16D53
+$cs-brown: #4C413F
+
+$control-font: "Lato", sans-serif
+$content-font: "Source Sans Pro"
+
+body
+  font-family: $control-font
+  font-weight: 300
+  color: $cs-dark-grey
+  overflow-y: scroll
+  background-color: $cs-lighter-grey
+
+h1, h2, h3, h4, h5, h6
+  font-family: inherit
+
+.header .top-bar .name
+  margin-right: 0px
+
+.header .top-bar .name a
+  padding: 0px !important
+
+.top-bar
+  margin-bottom: 17px !important
+
+.user-detail
+  display: none
+
+.caption
+  h1
+    font-weight: 300
+
+.feature-view
+  width: 100
+  color: white
+  background: white url('assets/top-bar-bg.png') repeat 0 -128px
+  .content
+    height: 400px
+    .detail
+      margin-top: 17px
+      h3
+        font-weight: 300
+        color: white
+        background-color: #D3561C
+        display: inline-block
+        padding: 0px 4px
+        margin: 0px
+    &.query
+      .query
+        font-size: 44px
+        line-height: 1em
+        height: 51px
+        font-weight: 300
+        color: white
+      .key
+        margin-right: 5px
+        border: 1px solid white
+        padding: 3px
+      .partition
+        border: 5px solid white
+        margin-top: 15px
+        margin-bottom: 0px
+      .option
+        list-style: none
+        float: right
+        li
+          float: left
+          margin-left: 8px
+          color: white
+          border: 1px solid white
+          padding: 5px
+          font-size: 17px
+          line-height: 1em
+      .keys
+        list-style: none
+        margin-top: 20px
+        li
+          padding: 1px
+    &.discover
+      .options
+        div
+          padding: 3px
+      .disc
+        border: 1px solid white
+        color: white
+
+      .keys
+        list-style: none
+        li
+          padding: 3px
+        div
+          float: right
+      .explore
+        border: 1px solid white
+        padding: 3px
+    &.trail
+      .nodes
+        margin-top: 8px
+      .result
+        margin-top: 8px
+        ul
+          list-style: none
+          li
+            font-weight: normal
+            p
+              font-weight: 300
+      .keys
+        list-style: none
+        border-right: 2px solid white
+        margin-bottom: 5px
+        li
+          padding-right: 3px
+          text-align: right
+.header
+  .top-bar
+    background-color: $cs-lighter-grey
+    .name
+      a
+        color: $cs-dark-grey !important
+        font-size: 23px !important
+        font-weight: 400
+
+.users
+  background-color: $cs-light-red
+  height: 110px
+  text-align: center
+  .circle:hover
+    background-color: $cs-light-grey
+    .inner-circle
+      border-color: $cs-dark-grey
+      &.entypo-icon
+        color: $cs-dark-grey
+  .title
+    color: $cs-light-grey
+    font-size: 17px
+  .circle
+    cursor: pointer
+    margin-left: auto
+    margin-right: auto
+    +border-radius(9999px)
+    background-color: $cs-dark-grey
+    height: 72px
+    width: 72px
+    padding-top: 5px
+    padding-left: 5px
+    margin-top: 8px
+    .inner-circle
+      +border-radius(9999px)
+      border: 2px dotted $cs-light-grey
+      background: none
+      width: 62px
+      height: 62px
+      &.entypo-icon
+        color: $cs-light-grey
+        font-size: 72px
+        padding-top: 30px
+        line-height: 0em
+        display: block

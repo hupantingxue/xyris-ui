@@ -2,6 +2,7 @@
 /build
 /vendor
 /dist
+/bower_temp
 
 *.log
 .sass-cache

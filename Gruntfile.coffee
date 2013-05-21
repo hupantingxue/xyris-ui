@@ -4,7 +4,7 @@ module.exports = (grunt) ->
     clean:
       pre: ['build/', 'dist/']
       post: []
-      afterRjs: ['build/client/']
+      afterRjs: ['build/client/explore']
     coffee:
       options:
         bare: false
@@ -25,12 +25,18 @@ module.exports = (grunt) ->
           ext: '.js'
         ]
     compass:
-      compile:
+      compile_explore:
         options:
-          sassDir: 'src/client/styles'
-          cssDir: 'build/client/styles'
-          fontsDir: 'src/cleint/styles/font'
-          specify: ['src/client/styles/**/*.scss', 'src/client/styles/**/*.sass']
+          sassDir: 'src/client/explore/styles'
+          cssDir: 'build/client/explore/styles'
+          fontsDir: 'src/client/explore/styles/font'
+          specify: ['src/client/explore/styles/**/*.scss', 'src/client/explore/styles/**/*.sass']
+      compile_home:
+        options:
+          sassDir: 'src/client/home/styles'
+          cssDir: 'build/client/home/styles'
+          fontsDir: 'src/client/home/styles/font'
+          specify: ['src/client/home/styles/**/*.scss', 'src/client/home/styles/**/*.sass']
       options:
         outputStyle: 'compressed'
     copy:
@@ -52,21 +58,30 @@ module.exports = (grunt) ->
             dest: 'build/client'
           }
         ]
-      libs:
+      libs_explore:
         files: [
           {
             expand: true
             cwd: 'src/'
-            src: ['client/scripts/plugins/**/*.js', 'client/scripts/vendor/**/*.js']
+            src: ['client/explore/scripts/plugins/**/*.js', 'client/explore/scripts/vendor/**/*.js']
             dest: 'build/'
           }
         ]
-      view_templates:
+      libs_home:
         files: [
           {
             expand: true
             cwd: 'src/'
-            src: ['client/scripts/views/templates/**/*.hbs']
+            src: ['client/home/scripts/**/*.js']
+            dest: 'build/'
+          }
+        ]
+      view_templates_explore:
+        files: [
+          {
+            expand: true
+            cwd: 'src/'
+            src: ['client/explore/scripts/views/templates/**/*.hbs']
             dest: 'build/'
           }
         ]
@@ -79,23 +94,50 @@ module.exports = (grunt) ->
             dest: 'build/'
           }
         ]
-      fonts:
+      fonts_explore:
         files: [
           {
             expand: true
             cwd: 'src/'
-            src: ['client/styles/font/**/*']
+            src: ['client/explore/styles/font/**/*']
+            dest: 'build/'
+          }
+        ]
+      fonts_home:
+        files: [
+          {
+            expand: true
+            cwd: 'src/'
+            src: ['client/home/styles/font/**/*']
+            dest: 'build/'
+          }
+        ]
+      image_home_copy:
+        files: [
+          {
+            expand: true
+            cwd: 'src/'
+            src: ['client/home/styles/assets/**/*.png','client/home/styles/assets/**/*.jpg']
+            dest: 'build/'
+          }
+        ]
+      bower_copy:
+        files: [
+          {
+            expand: true
+            cwd: 'bower_temp'
+            src: ['client/explore/scripts/vendor/**/*']
             dest: 'build/'
           }
         ]
     bower_install:
       install:
         options:
-          targetDir: 'build/client/scripts/vendor'
+          targetDir: 'bower_temp/client/explore/scripts/vendor'
           cleanup: false
     bower_require:
       all:
-        rjsConfig: 'build/client/scripts/initialize.js'
+        rjsConfig: 'build/client/explore/scripts/initialize.js'
     server:
       script: 'server.js'
     watch:
@@ -110,20 +152,20 @@ module.exports = (grunt) ->
           {
             expand: true
             cwd: 'src/'
-            src: ['client/styles/assets/*.png']
+            src: ['client/explore/styles/assets/*.png', 'client/home/styles/assets/*.png']
             dest: 'build/'
           }
         ]
     open:
       dev:
-        path: 'http://localhost:8888/'
+        path: 'http://explore.xyris.com'
     requirejs:
       dist:
         options:
           baseUrl: 'scripts'
-          appDir: 'build/client/'
-          mainConfigFile: 'build/client/scripts/initialize.js'
-          dir: 'dist/client'
+          appDir: 'build/client/explore'
+          mainConfigFile: 'build/client/explore/scripts/initialize.js'
+          dir: 'dist/client/explore'
           optimize: 'none'
           modules: [
             {
@@ -191,9 +233,8 @@ module.exports = (grunt) ->
                                  'coffee',
                                  'compass',
                                  'copy',
-                                 'bower_install',
                                  'bower_require',
-                                 'copy:libs',
+                                 'copy:libs_explore',
                                  'imagemin',
                                  'requirejs',
                                  'clean:afterRjs',

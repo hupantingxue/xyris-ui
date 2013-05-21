@@ -44,51 +44,28 @@ passport.use(new LocalStrategy(
     )
 ))
 
-app = express()
-
-app.settings.env = 'development'
-
-app.configure ->
-  app.set 'port', process.env.PORT || 8888
-  app.set 'views', './build/server/views'
-  app.set 'view engine', 'jade'
-  app.set 'showStackError', true
-
-  app.use express.compress()
-  app.use express.favicon()
-  app.use express.static('./build/client')
-
-  app.use express.cookieParser()
-
-  app.use express.bodyParser()
-  app.use express.methodOverride()
-
-  app.use express.session(
-    secret: 'searchcontext'
-    store: new RedisStore(
-      host: config.redis_host
-      port: config.redis_port
-    )
+express()
+.use(express.vhost(
+  'explore.xyris.com',
+  require('./apps/explore/app')(
+    passport,
+    stage: 'development'
+    port: 80
   )
-  app.use flash()
-
-  app.use passport.initialize()
-  app.use passport.session()
-
-  app.use app.router
-
-
-app.configure 'development', ->
-  app.locals.title = 'Xyris UI'
-  app.use express.logger 'dev'
-  app.use express.errorHandler()
-
-app.configure 'production', ->
-  app.use epxress.logger stream:logFile, 'dev'
-
-require('./routes')(app, passport)
-
-server = http.createServer(app)
-server.listen app.get('port'), ->
-  console.log 'Started on port ' + app.get('port') + ' Env: ' + app.settings.env
-
+))
+.use(express.vhost(
+  'xyris.com',
+  require('./apps/home/app')(
+    passport,
+    stage: 'development'
+    port: 80
+  )
+))
+.use(express.vhost(
+  'home.xyris.com',
+  require('./apps/home/app')(
+    passport,
+    stage: 'development'
+    port: 80
+  )
+)).listen(80)

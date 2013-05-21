@@ -1,0 +1,152 @@
+doctype 5
+html(lang="en")
+  head
+    title ReaderDeck
+    link(rel="stylesheet", href="/styles/home.css")
+    link(rel="stylesheet", type="text/css", href="http://fonts.googleapis.com/css?family=Lato:400,100,300,100italic,300italic,400italic,700,700italic,900,900italic|Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic")
+  body
+    div.header
+        div.row
+            div.xyris-icon.three.columns
+                nav.top-bar
+                    ul
+                        li.name
+                            h1
+                                a(hraf='/', title='Home page') ReaderDeck
+            div.user-detail.three.columns
+                input(placeholder='enter email id for invite', type='text')
+    div.row.caption
+        div.twelve.columns
+            h1 unleash the knowledge on web...
+    div.feature-view
+        div.row
+            div.slider
+                div#r-1
+                    div.twelve.columns.content.query
+                        div.row
+                            div.detail.four.columns
+                                h3 start your exploration
+                                h3 with a query
+                        div.row
+                            div.nine.columns.offset-by-two
+                                div.nine.columns
+                                    div.query albert einstein
+                                    span.key general relativity
+                                    span.key nobel prize
+                                    hr.partition
+                                    ul.option
+                                        li web
+                                        li documents
+                                        li research article
+                                div.three.columns
+                                    ul.keys
+                                        li Theory of relativity
+                                        li Nobel prize
+                                        li Photoelectric Effect
+                                        li Gravity
+                                        li General Theory of relativity
+                                        li E=mc2
+                        div.row
+                            div.detail.four.columns.offset-by-eight
+                                h3 add keywords to define
+                                h3 your search context
+
+                div#r-2
+                    div.twelve.columns.content.discover
+                        div.row
+                            div.detail.four.columns
+                                h3 dicover more concepts
+                                h3 from a document
+                        div.row
+                            div.nine.columns.offset-by-two
+                                div.two.columns.options
+                                    br
+                                    div summary
+                                    div.disc discover more
+                                    div bookmark
+                                    div read
+                                div.four.columns
+                                    br
+                                    ul.keys
+                                        li
+                                            | Theory of relativity
+                                            div +
+                                        li
+                                            | Nobel prize
+                                            div +
+                                        li
+                                            | Photoelectric Effect
+                                            div +
+                                        li
+                                            | Gravity
+                                            div +
+                                        li
+                                            | General Theory of relativity
+                                            div +
+                                        li
+                                            | E=mc2
+                                            div +
+                                div.six.columns
+                        div.row
+                            div.two.columns.offset-by-six
+                                div.explore start exploring
+                        div.row
+                            div.detail.four.columns.offset-by-eight
+                                h3 continue your exploration
+                                h3 with selected concepts
+                div#r-3
+                    div.twelve.columns.content.trail
+                        div.row
+                            div.detail.four.columns
+                                h3 navigate through search trail
+                                h3 to visit explored concepts
+                        div.row
+                            div.nine.columns.offset-by-two
+                                div.eight.columns.result
+                                    ul
+                                        li
+                                            | Theory of relativity
+                                            br
+                                            p
+                                                | Einstein discerned two fundamental propositions that seemed
+                                                | to be the most assured, regardless of the exact validity of
+                                                | the (then) known laws of either mechanics or electrodynamics
+                                        li
+                                            | Albert Einsteing and Theory of relativity
+                                            br
+                                            p
+                                                | Einstein discerned two fundamental propositions that seemed
+                                                | to be the most assured, regardless of the exact validity of
+                                                | the (then) known laws of either mechanics or electrodynamics
+                                div.four.columns.nodes
+                                    ul.keys
+                                        li Theory of relativity
+                                        li Nobel prize
+                                    ul.keys
+                                        li Photoelectric Effect
+                                        li Gravity
+                                    ul.keys
+                                        li General Theory of relativity
+                                        li E=mc2
+                        div.row
+                            div.detail.four.columns.offset-by-eight
+                                h3 share it using the link
+                                h3 or store it for later
+
+    div.row.users
+        div.twelve.columns
+            div.four.columns.entry
+                div.circle
+                    div.inner-circle.entypo-icon.researcher &#128100;
+                p.title everyone
+            div.four.columns.entry
+                div.circle
+                    div.inner-circle.entypo-icon.researcher &#127891;
+                p.title researchers
+            div.four.columns.entry
+                div.circle
+                    div.inner-circle.entypo-icon.researcher &#9998;
+                p.title students
+    script(src='http://code.jquery.com/jquery-1.9.1.min.js')
+    script(src='/scripts/orbit.js')
+    script(src='/scripts/app.js')

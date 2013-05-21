@@ -28,6 +28,13 @@ Techs used
 * grunt
 * bower
 
+### Pre requisites for a bare cloud server
+- sudo apt-get install git-core build-essential
+- install node through https://gist.github.com/isaacs/579814
+- install ruby
+- install compass
+- 
+
 Authors
 -------
 Kumar Ishan - [@kumarishan](https://github.com/kumarishan)

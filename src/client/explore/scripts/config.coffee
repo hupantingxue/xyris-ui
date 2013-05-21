@@ -7,9 +7,9 @@ define () ->
   production = no
 
   config.api.root = if production
-    'http://localhost'
+    ''
   else
-    'http://localhost:8888'
+    ''
 
   config.api.baseUrl = config.api.root + '/api'
 
